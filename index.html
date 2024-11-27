@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能條碼 - Google Sheets 整合</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #0078D4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .search-bar {
+            text-align: right;
+            margin: 10px;
+        }
+        .search-bar input {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+        .category {
+            margin: 20px auto;
+            max-width: 800px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .category-header {
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #0078D4;
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+        .category-items {
+            display: none;
+            padding: 15px;
+        }
+        .item {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .qr-code {
+            width: 100px;
+            height: 100px;
+            margin-right: 15px;
+        }
+        .item-details {
+            font-size: 14px;
+        }
+        .item-details div {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>智能條碼 - Google Sheets 整合</h1>
+    </header>
+    <div class="search-bar">
+        <input type="text" id="search" placeholder="搜尋品名、料號或條碼...">
+    </div>
+    <div id="categories"></div>
+
+    <!-- 改用 async 加載 QRCode.js -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <script>
+        // Google Apps Script 公開 URL
+        const apiUrl = "https://script.google.com/macros/s/AKfycbyJ7oI0shpdhmoUwJFcAAlkBkShMc-GJ3e4LJFCmcGEMph1PrBQMmVHCaCSo1p2aPaZZg/exec";
+
+        // 獲取資料並渲染頁面
+        async function loadData() {
+            try {
+                const response = await fetch(apiUrl, { cache: "no-store" }); // 禁止緩存以獲取最新資料
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                const categories = {};
+                data.forEach(item => {
+                    if (!categories[item.category]) {
+                        categories[item.category] = [];
+                    }
+                    categories[item.category].push(item);
+                });
+
+                renderCategories(categories);
+            } catch (error) {
+                console.error("無法加載數據：", error);
+                document.body.innerHTML = "<h2 style='color: red; text-align: center;'>數據加載失敗，請檢查 API URL 或 Google Sheets 的數據結構。</h2>";
+            }
+        }
+
+        // 渲染分類及項目
+        function renderCategories(categories) {
+            const categoriesContainer = document.getElementById('categories');
+            categoriesContainer.innerHTML = '';
+
+            for (const category in categories) {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.classList.add('category');
+
+                // 分類標題
+                const header = document.createElement('div');
+                header.classList.add('category-header');
+                header.textContent = category;
+                header.onclick = () => {
+                    const itemsDiv = header.nextElementSibling;
+                    itemsDiv.style.display = itemsDiv.style.display === 'block' ? 'none' : 'block';
+                };
+
+                // 分類內容
+                const itemsDiv = document.createElement('div');
+                itemsDiv.classList.add('category-items');
+                categories[category].forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('item');
+
+                    // 左側 QR Code
+                    const qrCodeDiv = document.createElement('div');
+                    qrCodeDiv.classList.add('qr-code');
+
+                    // 右側詳細信息
+                    const detailsDiv = document.createElement('div');
+                    detailsDiv.classList.add('item-details');
+                    detailsDiv.innerHTML = `
+                        <div><strong>品名規格:</strong> ${item.name}</div>
+                        <div><strong>料號:</strong> ${item.partNumber}</div>
+                        <div><strong>條碼:</strong> ${item.barcode}</div>
+                    `;
+
+                    itemDiv.appendChild(qrCodeDiv);
+                    itemDiv.appendChild(detailsDiv);
+                    itemsDiv.appendChild(itemDiv);
+
+                    // 生成 QR Code
+                    new QRCode(qrCodeDiv, {
+                        text: item.barcode || "無條碼",
+                        width: 100,
+                        height: 100,
+                    });
+                });
+
+                categoryDiv.appendChild(header);
+                categoryDiv.appendChild(itemsDiv);
+                categoriesContainer.appendChild(categoryDiv);
+            }
+        }
+
+        // 搜尋功能
+        document.getElementById('search').addEventListener('input', function () {
+            const searchText = this.value.toLowerCase();
+            const categories = document.querySelectorAll('.category');
+
+            categories.forEach(category => {
+                const items = category.querySelectorAll('.item');
+                let categoryVisible = false;
+
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    const matches = text.includes(searchText);
+                    item.style.display = matches ? 'flex' : 'none';
+                    if (matches) categoryVisible = true;
+                });
+
+                category.style.display = categoryVisible ? 'block' : 'none';
+            });
+        });
+
+        // 初始化
+        loadData();
+    </script>
+</body>
+</html>
