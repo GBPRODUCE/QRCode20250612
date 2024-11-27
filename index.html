@@ -1,84 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- 設定頁面編碼及視口 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智能條碼 - Google Sheets 整合</title>
+    <title>智能條碼</title>
+    
+    <!-- 設定頁面樣式 -->
     <style>
+        /* 頁面整體樣式 */
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
+            font-family: Arial, sans-serif; /* 字體設為Arial */
+            margin: 0; /* 去除頁面邊距 */
+            padding: 0; /* 去除頁面內邊距 */
+            background-color: #f4f4f9; /* 背景色為淺灰色 */
         }
+        /* 頁首區域樣式 */
         header {
-            background-color: #0078D4;
-            color: white;
-            padding: 20px;
-            text-align: center;
+            background-color: #0078D4; /* 背景色設為藍色 */
+            color: white; /* 文字顏色設為白色 */
+            padding: 20px; /* 內邊距設為20px */
+            text-align: center; /* 文字置中 */
         }
+        /* 搜尋框區域樣式 */
         .search-bar {
-            text-align: right;
-            margin: 10px;
+            text-align: right; /* 文字右對齊 */
+            margin: 10px; /* 上下左右邊距 */
         }
+        /* 搜尋框樣式 */
         .search-bar input {
-            padding: 8px;
-            font-size: 16px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            width: 300px;
+            padding: 8px; /* 內邊距8px */
+            font-size: 16px; /* 字型大小16px */
+            border-radius: 4px; /* 邊角圓滑 */
+            border: 1px solid #ccc; /* 边框为灰色 */
+            width: 300px; /* 寬度300px */
         }
+        /* 分類容器樣式 */
         .category {
-            margin: 20px auto;
-            max-width: 800px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px auto; /* 自動左右對齊，並設定上下間距20px */
+            max-width: 800px; /* 最大寬度800px */
+            background: white; /* 背景為白色 */
+            border-radius: 8px; /* 邊角圓滑 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加陰影 */
         }
+        /* 分類標題區域樣式 */
         .category-header {
-            padding: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            background-color: #0078D4;
-            color: white;
-            border-radius: 8px 8px 0 0;
+            padding: 15px; /* 內邊距15px */
+            font-size: 18px; /* 字型大小18px */
+            font-weight: bold; /* 字型加粗 */
+            cursor: pointer; /* 鼠標變為手形 */
+            background-color: #0078D4; /* 背景色設為藍色 */
+            color: white; /* 文字顏色設為白色 */
+            border-radius: 8px 8px 0 0; /* 上邊圓角 */
         }
+        /* 分類項目內容區域隱藏樣式 */
         .category-items {
-            display: none;
-            padding: 15px;
+            display: none; /* 預設為隱藏 */
+            padding: 15px; /* 內邊距15px */
         }
+        /* 單一項目樣式 */
         .item {
-            display: flex;
-            margin-bottom: 10px;
+            display: flex; /* 使用彈性盒子布局 */
+            margin-bottom: 10px; /* 項目之間有10px的間隔 */
         }
+        /* QR Code 容器樣式 */
         .qr-code {
-            width: 100px;
-            height: 100px;
-            margin-right: 15px;
+            width: 100px; /* 宽度100px */
+            height: 100px; /* 高度100px */
+            margin-right: 15px; /* 右側邊距15px */
         }
+        /* 項目詳細信息容器樣式 */
         .item-details {
-            font-size: 14px;
+            font-size: 14px; /* 字型大小14px */
         }
+        /* 每項細節之間的間隔 */
         .item-details div {
-            margin-bottom: 5px;
+            margin-bottom: 5px; /* 項目間隔5px */
         }
     </style>
 </head>
 <body>
+    <!-- 頁首內容 -->
     <header>
-        <h1>智能條碼 - Google Sheets 整合</h1>
+        <h1>智能條碼</h1>
     </header>
+    
+    <!-- 搜尋框 -->
     <div class="search-bar">
         <input type="text" id="search" placeholder="搜尋品名、料號或條碼...">
     </div>
+
+    <!-- 用來顯示分類的區域 -->
     <div id="categories"></div>
 
-    <!-- 改用 async 加載 QRCode.js -->
+    <!-- 載入 QRCode.js 库（異步載入） -->
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
     <script>
-        // Google Apps Script 公開 URL
+        // Google Apps Script 公開 URL（資料 API）
         const apiUrl = "https://script.google.com/macros/s/AKfycbyJ7oI0shpdhmoUwJFcAAlkBkShMc-GJ3e4LJFCmcGEMph1PrBQMmVHCaCSo1p2aPaZZg/exec";
 
         // 獲取資料並渲染頁面
@@ -86,29 +105,29 @@
             try {
                 const response = await fetch(apiUrl, { cache: "no-store" }); // 禁止緩存以獲取最新資料
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error(`HTTP error! status: ${response.status}`); // 錯誤處理
                 }
-                const data = await response.json();
+                const data = await response.json(); // 解析返回的 JSON 數據
 
-                const categories = {};
+                const categories = {}; // 用來儲存按分類整理的資料
                 data.forEach(item => {
-                    if (!categories[item.category]) {
+                    if (!categories[item.category]) { // 檢查是否已有此分類
                         categories[item.category] = [];
                     }
-                    categories[item.category].push(item);
+                    categories[item.category].push(item); // 根據分類儲存項目
                 });
 
-                renderCategories(categories);
+                renderCategories(categories); // 渲染分類
             } catch (error) {
                 console.error("無法加載數據：", error);
-                document.body.innerHTML = "<h2 style='color: red; text-align: center;'>數據加載失敗，請檢查 API URL 或 Google Sheets 的數據結構。</h2>";
+                document.body.innerHTML = "<h2 style='color: red; text-align: center;'>數據加載失敗。</h2>";
             }
         }
 
         // 渲染分類及項目
         function renderCategories(categories) {
             const categoriesContainer = document.getElementById('categories');
-            categoriesContainer.innerHTML = '';
+            categoriesContainer.innerHTML = ''; // 清空現有內容
 
             for (const category in categories) {
                 const categoryDiv = document.createElement('div');
@@ -119,11 +138,11 @@
                 header.classList.add('category-header');
                 header.textContent = category;
                 header.onclick = () => {
-                    const itemsDiv = header.nextElementSibling;
-                    itemsDiv.style.display = itemsDiv.style.display === 'block' ? 'none' : 'block';
+                    const itemsDiv = header.nextElementSibling; // 獲取分類項目區域
+                    itemsDiv.style.display = itemsDiv.style.display === 'block' ? 'none' : 'block'; // 切換顯示與隱藏
                 };
 
-                // 分類內容
+                // 分類內容區域
                 const itemsDiv = document.createElement('div');
                 itemsDiv.classList.add('category-items');
                 categories[category].forEach(item => {
@@ -143,45 +162,45 @@
                         <div><strong>條碼:</strong> ${item.barcode}</div>
                     `;
 
-                    itemDiv.appendChild(qrCodeDiv);
-                    itemDiv.appendChild(detailsDiv);
-                    itemsDiv.appendChild(itemDiv);
+                    itemDiv.appendChild(qrCodeDiv); // 添加 QR Code 區域
+                    itemDiv.appendChild(detailsDiv); // 添加項目詳情區域
+                    itemsDiv.appendChild(itemDiv); // 添加到分類項目區域
 
-                    // 生成 QR Code
+                    // 使用 QRCode.js 生成 QR Code
                     new QRCode(qrCodeDiv, {
-                        text: item.barcode || "無條碼",
-                        width: 100,
-                        height: 100,
+                        text: item.barcode || "無條碼", // 條碼如果無值則顯示"無條碼"
+                        width: 100, // 設定 QR Code 寬度
+                        height: 100, // 設定 QR Code 高度
                     });
                 });
 
-                categoryDiv.appendChild(header);
-                categoryDiv.appendChild(itemsDiv);
-                categoriesContainer.appendChild(categoryDiv);
+                categoryDiv.appendChild(header); // 添加分類標題
+                categoryDiv.appendChild(itemsDiv); // 添加分類內容
+                categoriesContainer.appendChild(categoryDiv); // 添加到頁面
             }
         }
 
         // 搜尋功能
         document.getElementById('search').addEventListener('input', function () {
-            const searchText = this.value.toLowerCase();
-            const categories = document.querySelectorAll('.category');
+            const searchText = this.value.toLowerCase(); // 取得輸入框內容並轉為小寫
+            const categories = document.querySelectorAll('.category'); // 查找所有分類
 
             categories.forEach(category => {
                 const items = category.querySelectorAll('.item');
                 let categoryVisible = false;
 
                 items.forEach(item => {
-                    const text = item.textContent.toLowerCase();
-                    const matches = text.includes(searchText);
-                    item.style.display = matches ? 'flex' : 'none';
-                    if (matches) categoryVisible = true;
+                    const text = item.textContent.toLowerCase(); // 取得每個項目的文本內容並轉小寫
+                    const matches = text.includes(searchText); // 檢查是否匹配
+                    item.style.display = matches ? 'flex' : 'none'; // 根據匹配結果顯示或隱藏項目
+                    if (matches) categoryVisible = true; // 若有項目匹配，顯示分類
                 });
 
-                category.style.display = categoryVisible ? 'block' : 'none';
+                category.style.display = categoryVisible ? 'block' : 'none'; // 顯示或隱藏分類
             });
         });
 
-        // 初始化
+        // 初始化頁面並加載資料
         loadData();
     </script>
 </body>
