@@ -1,23 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智能條碼</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智能條碼</title>
+  <style>
+    /* 全局樣式 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .header input {
+      width: 50%;
+      padding: 8px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .category {
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+
+    .category h3 {
+      margin: 0;
+      padding: 15px;
+      background: #f0f0f0;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .category h3:hover {
+      background: #e9e9e9;
+    }
+
+    .items {
+      display: none;
+      padding: 10px 15px;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .qr-code {
+      margin-right: 10px;
+    }
+
+    .qr-code img {
+      width: 80px;
+      height: 80px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .item-details {
+      flex: 1;
+    }
+
+    .item-details div {
+      margin-bottom: 5px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>智能條碼</h1>
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="搜尋品名或條碼..." oninput="filterItems()">
-        </div>
-    </header>
+  <!-- 標題與搜尋欄 -->
+  <div class="header">
+    <h1>智能條碼</h1>
+    <input type="text" id="search" placeholder="搜尋類別、品名、料號或條碼" oninput="filterItems()">
+  </div>
 
-    <main id="categories"></main>
+  <div class="container">
+    <div id="data-container"></div>
+  </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+  <script>
+    async function fetchData() {
+      const response = await fetch('data.json');
+      return response.json();
+    }
+
+    function generateQRCode(barcode) {
+      return `https://api.qrserver.com/v1/create-qr-code/?data=${barcode}&size=100x100`;
+    }
+
+    function renderData(filteredData) {
+      const container = document.getElementById('data-container');
+      container.innerHTML = '';
+      const categories = [...new Set(filteredData.map(item => item.category))];
+
+      categories.forEach(category => {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'category';
+        categoryDiv.innerHTML = `
+          <h3 onclick="toggleItems(this)">${category} <span>&#9660;</span></h3>
+          <div class="items"></div>
+        `;
+        const itemsDiv = categoryDiv.querySelector('.items');
+
+        filteredData
+          .filter(item => item.category === category)
+          .forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'item';
+            itemDiv.innerHTML = `
+              <div class="qr-code">
+                <img src="${generateQRCode(item.barcode)}" alt="QR Code">
+              </div>
+              <div class="item-details">
+                <div><strong>品名規格：</strong>${item.name}</div>
+                <div><strong>料號：</strong>${item.partNumber}</div>
+                <div><strong>條碼編號：</strong>${item.barcode}</div>
+              </div>
+            `;
+            itemsDiv.appendChild(itemDiv);
+          });
+
+        container.appendChild(categoryDiv);
+      });
+    }
+
+    function toggleItems(header) {
+      const items = header.nextElementSibling;
+      const icon = header.querySelector('span');
+      if (items.style.display === 'none' || items.style.display === '') {
+        items.style.display = 'block';
+        icon.innerHTML = '&#9650;';
+      } else {
+        items.style.display = 'none';
+        icon.innerHTML = '&#9660;';
+      }
+    }
+
+    function filterItems() {
+      const searchTerm = document.getElementById('search').value.toLowerCase();
+      fetchData().then(data => {
+        const filteredData = data.filter(item => 
+          item.category.toLowerCase().includes(searchTerm) ||
+          item.name.toLowerCase().includes(searchTerm) ||
+          item.partNumber.toLowerCase().includes(searchTerm) ||
+          String(item.barcode).toLowerCase().includes(searchTerm)
+        );
+        renderData(filteredData);
+      });
+    }
+
+    // 初始載入資料
+    fetchData().then(data => renderData(data));
+  </script>
 </body>
 </html>
