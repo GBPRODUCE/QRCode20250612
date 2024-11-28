@@ -1,4 +1,4 @@
-[
+const data = [
   {
     "category": "A&M",
     "name": "A&M T1 P",
@@ -5951,4 +5951,4 @@
     "partNumber": "UA1212CCT",
     "barcode": "4711914358243"
   }
-]
+];
