@@ -19,6 +19,14 @@
 
   <div class="container" id="main-container"></div>
 
+  <div class="container">
+        <!-- 輸入條碼數值 -->
+        <input type="text" id="barcodeInput" oninput="updateBarcode()" placeholder="輸入條碼數值">
+        <div id="barcode">
+            <svg></svg>
+        </div>
+  </div>
+
   <script>
     const data = [
   {
@@ -6093,5 +6101,28 @@ function renderData(filteredData) {
     // 初始渲染
     renderData(data);
   </script>
+
+    <!-- 載入 JsBarcode 庫 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.0/JsBarcode.all.min.js"></script>
+    <script>
+        // 更新條碼
+        function updateBarcode() {
+            // 獲取條碼輸入框中的數值
+            var barcodeValue = document.getElementById("barcodeInput").value;
+            // 使用 JsBarcode 生成條碼
+            JsBarcode("#barcode svg", barcodeValue, {
+                format: "CODE128",
+                displayValue: true,
+                font: "Arial",
+                textAlign: "center",
+                textPosition: "bottom",
+                textMargin: 10
+            });
+        }
+
+        // 初始生成條碼
+        updateBarcode();
+    </script>
+
 </body>
 </html>
