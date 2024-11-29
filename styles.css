@@ -112,3 +112,35 @@ body {
 .item-details div {
   margin-bottom: 5px;
 }
+
+        /* 輸入框 */
+        #barcodeInput {
+            margin: auto;
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 10px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        #barcodeInput:focus {
+            border-color: #0066cc;
+        }
+
+        /* 條碼展示區域 */
+        #barcode {
+            margin-top: 30px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        svg {
+
+            max-width: 350px;
+            margin:auto;
+            display: block;
+        }
