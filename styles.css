@@ -155,7 +155,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #8E8E8E;            /* 設定滑塊顏色 */
+  background: #A5DEE4;            /* 設定滑塊顏色 */
   border-radius: 10px;            /* 設定滑塊圓角 */
 }
 
