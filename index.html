@@ -6097,50 +6097,7 @@
       return `https://api.qrserver.com/v1/create-qr-code/?data=${barcode}&size=100x100`;
     }
 
-    function renderData(filteredData) {
-      container.innerHTML = '';
-      Object.keys(mainCategories).forEach(mainCategory => {
-        const mainDiv = document.createElement('div');
-        mainDiv.className = 'main-category';
-        mainDiv.innerHTML = `
-          <h2 onclick="toggleCategory(this)">${mainCategory} <span>&#9660;</span></h2>
-          <div class="categories" style="display: none;"></div>
-        `;
-        const categoriesDiv = mainDiv.querySelector('.categories');
 
-        mainCategories[mainCategory].forEach(subCategory => {
-          const subCategoryDiv = document.createElement('div');
-          subCategoryDiv.className = 'category';
-          subCategoryDiv.innerHTML = `
-            <h3 onclick="toggleItems(this)">${subCategory} <span>&#9660;</span></h3>
-            <div class="items" style="display: none;"></div>
-          `;
-          const itemsDiv = subCategoryDiv.querySelector('.items');
-
-          filteredData
-            .filter(item => item.category === subCategory)
-            .forEach(item => {
-              const itemDiv = document.createElement('div');
-              itemDiv.className = 'item';
-              itemDiv.innerHTML = `
-                <div class="qr-code">
-                  <img src="${generateQRCode(item.barcode)}" alt="QR Code">
-                </div>
-                <div class="item-details">
-                  <div><strong>品名規格：</strong>${item.name}</div>
-                  <div><strong>料號：</strong>${item.partNumber}</div>
-                  <div><strong>條碼編號：</strong>${item.barcode}</div>
-                </div>
-              `;
-              itemsDiv.appendChild(itemDiv);
-            });
-
-          categoriesDiv.appendChild(subCategoryDiv);
-        });
-
-        container.appendChild(mainDiv);
-      });
-    }
 
     function toggleCategory(header) {
       const categories = header.nextElementSibling;
@@ -6166,6 +6123,61 @@
       }
     }
 
+function renderData(filteredData) {
+  container.innerHTML = '';
+  
+  // 遍歷大分類
+  Object.keys(mainCategories).forEach(mainCategory => {
+    const mainDiv = document.createElement('div');
+    mainDiv.className = 'main-category';
+    mainDiv.innerHTML = `
+      <h2 onclick="toggleCategory(this)">${mainCategory} <span>&#9660;</span></h2>
+      <div class="categories" style="display: none;"></div>
+    `;
+    const categoriesDiv = mainDiv.querySelector('.categories');
+
+    // 遍歷子分類
+    mainCategories[mainCategory].forEach(subCategory => {
+      const subCategoryDiv = document.createElement('div');
+      subCategoryDiv.className = 'category';
+      subCategoryDiv.innerHTML = `
+        <h3 onclick="toggleItems(this)">${subCategory} <span>&#9660;</span></h3>
+        <div class="items" style="display: none;"></div>
+      `;
+      const itemsDiv = subCategoryDiv.querySelector('.items');
+
+      // 過濾數據，僅顯示符合條件的子分類項目
+      const subCategoryData = filteredData.filter(item => item.category === subCategory);
+      
+      if (subCategoryData.length > 0) {
+        subCategoryData.forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'item';
+          itemDiv.innerHTML = `
+            <div class="qr-code">
+              <img src="${generateQRCode(item.barcode)}" alt="QR Code">
+            </div>
+            <div class="item-details">
+              <div><strong>品名規格：</strong>${item.name}</div>
+              <div><strong>料號：</strong>${item.partNumber}</div>
+              <div><strong>條碼編號：</strong>${item.barcode}</div>
+            </div>
+          `;
+          itemsDiv.appendChild(itemDiv);
+        });
+
+        // 只有在子分類中有符合條件的數據時，才添加到 DOM
+        categoriesDiv.appendChild(subCategoryDiv);
+      }
+    });
+
+    // 僅當大分類有符合條件的子分類時，才添加到 DOM
+    if (categoriesDiv.children.length > 0) {
+      container.appendChild(mainDiv);
+    }
+  });
+}
+
     function filterItems() {
       const searchTerm = document.getElementById('search').value.toLowerCase();
       const filteredData = data.filter(item => 
@@ -6174,7 +6186,18 @@
         item.partNumber.toLowerCase().includes(searchTerm) ||
         String(item.barcode).toLowerCase().includes(searchTerm)
       );
+
       renderData(filteredData);
+
+      // 如果搜尋欄清空，恢復到初始狀態
+      if (!searchTerm) {
+        document.querySelectorAll('.categories, .items').forEach(element => {
+          element.style.display = 'none';
+        });
+        document.querySelectorAll('.main-category h2 span, .category h3 span').forEach(icon => {
+          icon.innerHTML = '&#9660;';
+        });
+      }
     }
 
     // 初始渲染
