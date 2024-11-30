@@ -116,7 +116,7 @@ body {
         /* 輸入框 */
         #barcodeInput {
             margin: auto;
-            padding: 10px;
+            padding: 20px;
             font-size: 14px;
             margin-top: 10px;
             border: 1px solid #ccc;
@@ -138,8 +138,6 @@ body {
         }
 
         svg {
-
-            max-width: 350px;
             margin:auto;
             display: block;
         }
