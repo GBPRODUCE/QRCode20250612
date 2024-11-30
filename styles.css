@@ -107,13 +107,6 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* 條碼展示區域 */
-#barcode {
-  margin-top: 10px;
-  padding: 20px;
-  background-color: #D1EEEF;
-  border-radius: 12px;
-}
 svg {
   margin:auto;
   display: block;
@@ -140,9 +133,8 @@ svg {
 /* 表格樣式 */
 table {
    border-collapse: collapse;
-   width: 100%;
+   width: 95%;
    margin: auto;
-   background-color: #ffffff;
 }
 
 th, td {
