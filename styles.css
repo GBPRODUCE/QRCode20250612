@@ -161,3 +161,111 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #8E8E8E;            /* 滑鼠懸停時滑塊顏色 */
 }
+
+        /* 表格樣式 */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px auto;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #D1EEEF;
+            color: #9E7A7A;
+            font-weight: bold;
+        }
+
+        td input[type="text"] {
+            width: 90%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        /* 按鈕樣式 */
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            color: #9E7A7A;
+            background-color: #D1EEEF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004d99;
+        }
+
+        /* 結果區域樣式 */
+        .result {
+            background-color: #ffffff;
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            line-height: 1.6em;
+        }
+
+        .flame {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .flex-none {
+            width: 45%;
+        }
+
+        /* 優耳文字顏色 */
+        .blue-text {
+            color: #070cfa;
+        }
+
+        .red-text {
+            color: crimson;
+        }
+
+        /* 參考公式區域 */
+        .reference-formula {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .reference-formula h3 {
+            color: #333;
+        }
+
+        .reference-formula ul {
+            padding-left: 20px;
+        }
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.button-container button {
+    width: 100px;
+}
