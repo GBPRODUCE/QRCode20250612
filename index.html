@@ -10,7 +10,7 @@
   
   <!-- 引用外部 CSS 文件 -->
   <link rel="stylesheet" href="styles.css">
-  
+
 </head>
 <body>
   <div class="header">
@@ -20,14 +20,72 @@
 
   <div class="container" id="main-container"></div>
 
-  <div class="container">
+  <div class="container">  
         <!-- 輸入條碼數值 -->
-        <div id="barcode">
-            <input type="text" id="barcodeInput" oninput="updateBarcode()" placeholder="輸入條碼數值">
-            <svg></svg>
-        </div>
+       <table>
+        <tr>
+         <th>
+<div id="barcode"><input type="text" id="barcodeInput" oninput="updateBarcode()" placeholder="輸入數值生成條碼"><svg></svg></div>
+         </th>
+        </tr>
+       </table>
+  
+    <table>
+        <tr>
+            <th colspan="5"><h2>障礙比率計算</h2></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>500Hz</th>
+            <th>1000Hz</th>
+            <th>2000Hz</th>
+            <th>4000Hz</th>
+        </tr>
+        <tr>
+            <td style="font-weight:bold">右耳</td>
+            <td><input type="text" id="rightEar_500Hz"></td>
+            <td><input type="text" id="rightEar_1000Hz"></td>
+            <td><input type="text" id="rightEar_2000Hz"></td>
+            <td><input type="text" id="rightEar_4000Hz"></td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold">左耳</td>
+            <td><input type="text" id="leftEar_500Hz"></td>
+            <td><input type="text" id="leftEar_1000Hz"></td>
+            <td><input type="text" id="leftEar_2000Hz"></td>
+            <td><input type="text" id="leftEar_4000Hz"></td>
+        </tr>
+            <td></td>
+            <td></td>
+            <td><button onclick="calculatePTA()">計算</button></td>
+            <td><button onclick="clearInput()">清空</button></td>
+            <td></td>
+        <tr>
+            <td></td>
+            <td id="betterEar" style="font-weight:bold">優耳:</td>
+            <td id="rightEar_PTA">右耳PTA:</td>
+            <td id="leftEar_PTA">左耳PTA:</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td id="bilateral_HL" style="font-weight:bold">雙耳聽障比率:</td>
+            <td id="rightEar_HL">右耳單耳聽障比率:</td>
+            <td id="leftEar_HL">左耳單耳聽障比率:</td>
+            <td ></td>
+        </tr>
+        <tr>
+            <td colspan="5" style="font-weight:bold">※參考公式※</td>
+        </tr>
+        <tr>
+            <td colspan="5">
+           PTA(dB)=(500Hz+1000Hz+2000Hz+4000Hz)/4<br>
+           單耳障礙比率(%)=(PTA-25)*1.5%<br>
+           雙耳障礙比率(%)=(優耳障礙比率%*5 + 劣耳障礙比率%*1)/6
+            </td>
+        </tr>
+    </table>
   </div>
-
   <script>
     const data = [
   {
@@ -6123,6 +6181,106 @@ function renderData(filteredData) {
 
         // 初始生成條碼
         updateBarcode();
+
+        function calculatePTA() {
+            // 獲取右耳和左耳的數值
+            var rightEarData = [
+                parseFloat(document.getElementById("rightEar_500Hz").value),
+                parseFloat(document.getElementById("rightEar_1000Hz").value),
+                parseFloat(document.getElementById("rightEar_2000Hz").value),
+                parseFloat(document.getElementById("rightEar_4000Hz").value)
+            ];
+
+            var leftEarData = [
+                parseFloat(document.getElementById("leftEar_500Hz").value),
+                parseFloat(document.getElementById("leftEar_1000Hz").value),
+                parseFloat(document.getElementById("leftEar_2000Hz").value),
+                parseFloat(document.getElementById("leftEar_4000Hz").value)
+            ];
+
+            // 計算平均值
+            var rightEarPTA = calculateAverage(rightEarData);
+            var leftEarPTA = calculateAverage(leftEarData);
+
+            // 計算單耳聽障比率
+            var rightEarHearingLoss = 0;
+            var leftEarHearingLoss = 0;
+
+            if (rightEarPTA < 25) {
+                rightEarHearingLoss = 0;
+            } else {
+                rightEarHearingLoss = ((rightEarPTA - 25) * 150) / 100;
+            }
+
+            if (leftEarPTA < 25) {
+                leftEarHearingLoss = 0;
+            } else {
+                leftEarHearingLoss = ((leftEarPTA - 25) * 150) / 100;
+            }
+
+            // 計算優耳
+            var betterEar = "";
+
+            if (rightEarHearingLoss < leftEarHearingLoss) {
+                betterEar = "右耳";
+            } else if (leftEarHearingLoss < rightEarHearingLoss) {
+                betterEar = "左耳";
+            } else {
+                betterEar = "";
+            }
+
+            // 計算雙耳聽障比率
+            var bilateralHearingLoss = 0;
+            if (rightEarHearingLoss > leftEarHearingLoss && leftEarHearingLoss > 0) {
+                bilateralHearingLoss = ((rightEarHearingLoss * 1) + (leftEarHearingLoss * 5)) / 6;
+            } else if (leftEarHearingLoss > rightEarHearingLoss && rightEarHearingLoss > 0) {
+                bilateralHearingLoss = ((rightEarHearingLoss * 5) + (leftEarHearingLoss * 1)) / 6;
+            }
+
+            // 顯示結果
+            document.getElementById("rightEar_PTA").innerHTML = "右耳PTA: " + rightEarPTA.toFixed(1);
+            document.getElementById("leftEar_PTA").innerHTML = "左耳PTA: " + leftEarPTA.toFixed(1);
+            document.getElementById("rightEar_HL").innerHTML = "右耳單耳聽障比率: " + rightEarHearingLoss.toFixed(1) + "%";
+            document.getElementById("leftEar_HL").innerHTML = "左耳單耳聽障比率: " + leftEarHearingLoss.toFixed(1) + "%";
+            document.getElementById("bilateral_HL").innerHTML = "雙耳聽障比率: " + bilateralHearingLoss.toFixed(1) + "%";
+
+            // 根據優耳值應用不同的CSS樣式
+            if (betterEar === "左耳") {
+                document.getElementById("betterEar").className = "blue-text";
+            } else if (betterEar === "右耳") {
+                document.getElementById("betterEar").className = "red-text";
+            } else {
+                // 如果優耳為空，清除所有樣式
+                document.getElementById("betterEar").className = "";
+            }
+
+            // 設置優耳內容
+            document.getElementById("betterEar").innerHTML = "優耳: " + betterEar;
+        }
+
+        function calculateAverage(data) {
+            var sum = 0;
+            var count = 0;
+            for (var i = 0; i < data.length; i++) {
+                if (!isNaN(data[i])) {
+                    sum += data[i];
+                    count++;
+                }
+            }
+            if (count > 0) {
+                return sum / count;
+            } else {
+                return 0;
+            }
+        }
+
+        // JavaScript函数，用于清空输入框的值
+        function clearInput() {
+            var inputElements = document.getElementsByTagName("input");
+            for (var i = 0; i < inputElements.length; i++) {
+                inputElements[i].value = "";
+            }
+        }
     </script>
 
 </body>
