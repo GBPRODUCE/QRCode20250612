@@ -25,11 +25,15 @@
        <table>
         <tr>
          <th>
-<div id="barcode"><input type="text" id="barcodeInput" oninput="updateBarcode()" placeholder="輸入數值生成條碼"><svg></svg></div>
+            <div id="barcode">
+              <svg></svg>
+              <input type="text" id="barcodeInput" oninput="updateBarcode()" placeholder="輸入數值生成條碼">
+            </div>
          </th>
         </tr>
        </table>
-  
+  </div>
+  <div class="container">  
     <table>
         <tr>
             <th colspan="5"><h2>障礙比率計算</h2></th>
@@ -42,14 +46,14 @@
             <th>4000Hz</th>
         </tr>
         <tr>
-            <td style="font-weight:bold">右耳</td>
+            <td style="font-weight:bold">右</td>
             <td><input type="text" id="rightEar_500Hz"></td>
             <td><input type="text" id="rightEar_1000Hz"></td>
             <td><input type="text" id="rightEar_2000Hz"></td>
             <td><input type="text" id="rightEar_4000Hz"></td>
         </tr>
         <tr>
-            <td style="font-weight:bold">左耳</td>
+            <td style="font-weight:bold">左</td>
             <td><input type="text" id="leftEar_500Hz"></td>
             <td><input type="text" id="leftEar_1000Hz"></td>
             <td><input type="text" id="leftEar_2000Hz"></td>
