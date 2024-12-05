@@ -1,179 +1,187 @@
+/* 全局樣式 */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
-  color: #333;
+  font-family: Arial, sans-serif; /* 設定全局字體 */
+  margin: 0; /* 移除默認外邊距 */
+  padding: 0; /* 移除默認內邊距 */
+  background-color: #f9f9f9; /* 設定背景顏色 */
+  color: #333; /* 設定文字顏色 */
 }
+
+/* 頁首樣式 */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #A5DEE4;
-  color: #9E7A7A;
-  padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex; /* 使用彈性布局 */
+  justify-content: space-between; /* 兩邊對齊 */
+  align-items: center; /* 垂直居中 */
+  background-color: #A5DEE4; /* 頁眉背景色 */
+  color: #9E7A7A; /* 頁眉文字顏色 */
+  padding: 10px 20px; /* 內邊距 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加陰影 */
 }
 .header h1 {
-  margin: 0;
-  font-size: 1.5rem;
+  margin: 0; /* 移除外邊距 */
+  font-size: 1.5rem; /* 字體大小 */
 }
 .header input {
-  width: 25%;
-  padding: 10px 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  outline: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 25%; /* 輸入框寬度 */
+  padding: 10px; /* 內邊距 */
+  font-size: 1rem; /* 字體大小 */
+  border: 1px solid #ccc; /* 邊框 */
+  border-radius: 25px; /* 圓角 */
+  outline: none; /* 去掉聚焦外邊框 */
+  transition: all 0.3s ease; /* 動畫過渡 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 陰影 */
 }
 .header input:focus {
-  border-color: #9E7A7A;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: #9E7A7A; /* 聚焦時邊框顏色 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 聚焦時陰影 */
 }
+
+/* 容器樣式 */
 .container {
-  padding: 20px;
+  padding: 20px; /* 內邊距 */
 }
+
+/* 主分類和子分類樣式 */
 .main-category, .category {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  background-color: #f1f1f1;
+  border: 1px solid #ccc; /* 邊框顏色 */
+  border-radius: 5px; /* 圓角 */
+  margin-bottom: 10px; /* 下間距 */
+  background-color: #f1f1f1; /* 背景色 */
 }
 .main-category h2, .category h3 {
-  margin: 0;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
+  margin: 0; /* 移除外邊距 */
+  padding: 15px; /* 內邊距 */
+  display: flex; /* 使用彈性布局 */
+  justify-content: space-between; /* 兩端對齊 */
+  align-items: center; /* 垂直居中 */
+  cursor: pointer; /* 鼠標變為手型 */
 }
 .main-category h2 {
-  background: #D1EEEF;
-  font-size: 1.3rem;
+  background: #D1EEEF; /* 主分類背景色 */
+  font-size: 1.3rem; /* 字體大小 */
 }
 .main-category h2:hover {
-  background: #c9e1e2;
+  background: #c9e1e2; /* 滑鼠懸停背景色 */
 }
 .category h3 {
-  background: #A5DEE4;
-  font-size: 1.2rem;
+  background: #A5DEE4; /* 子分類背景色 */
+  font-size: 1.2rem; /* 字體大小 */
 }
 .category h3:hover {
-  background: #e9e9e9;
+  background: #e9e9e9; /* 滑鼠懸停背景色 */
 }
+
+/* 項目樣式 */
 .items {
-  display: none;
-  padding: 10px 15px;
+  display: none; /* 預設隱藏 */
+  padding: 10px 15px; /* 內邊距 */
 }
 .item {
-  display: flex;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
+  display: flex; /* 使用彈性布局 */
+  align-items: center; /* 垂直居中 */
+  padding: 10px 0; /* 垂直內邊距 */
+  border-bottom: 1px solid #eee; /* 底部邊框 */
 }
 .item:last-child {
-  border-bottom: none;
+  border-bottom: none; /* 最後一項移除底部邊框 */
 }
 .qr-code {
-  flex-shrink: 0;
-  width: 100px;
-  margin-right: 15px;
+  flex-shrink: 0; /* 防止縮小 */
+  width: 100px; /* 寬度 */
+  margin-right: 15px; /* 右外邊距 */
 }
 .qr-code img {
-  width: 80px;
-  height: 80px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  width: 80px; /* 圖片寬度 */
+  height: 80px; /* 圖片高度 */
+  border: 1px solid #ddd; /* 圖片邊框 */
+  border-radius: 5px; /* 圓角 */
 }
 .item-details {
-  flex-grow: 1;
+  flex-grow: 1; /* 擴展填滿空間 */
 }
 .item-details div {
-  margin-bottom: 5px;
+  margin-bottom: 5px; /* 下外邊距 */
 }
 
-/* 輸入框 */
+/* 輸入框樣式 */
 #barcodeInput {
-  text-align: center;
-  width: 80%;
-  padding: 5px 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  outline: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center; /* 文本居中 */
+  width: 80%; /* 寬度 */
+  padding: 5px 10px; /* 內邊距 */
+  font-size: 1rem; /* 字體大小 */
+  border: 1px solid #ccc; /* 邊框 */
+  border-radius: 25px; /* 圓角 */
+  outline: none; /* 去掉聚焦外邊框 */
+  transition: all 0.3s ease; /* 過渡效果 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 陰影 */
 }
 
+/* SVG 居中顯示 */
 svg {
-  margin:auto;
-  display: block;
+  margin: auto; /* 自動居中 */
+  display: block; /* 块級顯示 */
 }
 
-/* 美化滾動條樣式 */
+/* 滾動條樣式 */
 ::-webkit-scrollbar {
-  width: 8px;                     /* 設定滾動條寬度 */
+  width: 8px; /* 滾動條寬度 */
 }
-
 ::-webkit-scrollbar-track {
-  background: #E0E0E0;            /* 設定滾動條背景顏色 */
+  background: #E0E0E0; /* 滾動條軌道顏色 */
 }
-
 ::-webkit-scrollbar-thumb {
-   background: #A5DEE4;            /* 設定滑塊顏色 */
-   border-radius: 10px;            /* 設定滑塊圓角 */
+  background: #A5DEE4; /* 滾動條滑塊顏色 */
+  border-radius: 10px; /* 滑塊圓角 */
 }
-
 ::-webkit-scrollbar-thumb:hover {
-   background: #8E8E8E;            /* 滑鼠懸停時滑塊顏色 */
+  background: #8E8E8E; /* 滑鼠懸停時滑塊顏色 */
 }
 
 /* 表格樣式 */
 table {
-   border-collapse: collapse;
-   width: 98%;
-   margin: auto;
+  border-collapse: collapse; /* 移除單元格間隙 */
+  width: 98%; /* 表格寬度 */
+  margin: auto; /* 居中 */
 }
-
 th, td {
-   padding: 15px;
-   text-align: center;
-   border-bottom: 1px solid #ddd;
+  padding: 15px; /* 單元格內邊距 */
+  text-align: center; /* 文本居中 */
+  border-bottom: 1px solid #ddd; /* 單元格底部邊框 */
 }
 th {
-   background-color: #D1EEEF;
-   color: #9E7A7A;
-   font-weight: bold;
+  background-color: #D1EEEF; /* 表頭背景色 */
+  color: #9E7A7A; /* 表頭文字顏色 */
+  font-weight: bold; /* 加粗 */
 }
 td input[type="text"] {
-   text-align: center;
-   width: 60%;
-   padding: 5px 10px;
-   font-size: 1rem;
-   border: 1px solid #ccc;
-   border-radius: 25px;
-   outline: none;
-   transition: all 0.3s ease;
-   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center; /* 文本居中 */
+  width: 60%; /* 輸入框寬度 */
+  padding: 5px 10px; /* 內邊距 */
+  font-size: 1rem; /* 字體大小 */
+  border: 1px solid #ccc; /* 邊框 */
+  border-radius: 25px; /* 圓角 */
+  outline: none; /* 去掉聚焦外邊框 */
+  transition: all 0.3s ease; /* 過渡效果 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 陰影 */
 }
+
 /* 按鈕樣式 */
 button {
-    font-size: 18px;
-    padding: 10px 20px;
-    margin: 10px;
-    color: #9E7A7A;
-    background-color: #D1EEEF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  font-size: 18px; /* 字體大小 */
+  padding: 10px 20px; /* 內邊距 */
+  margin: 10px; /* 外邊距 */
+  color: #9E7A7A; /* 文字顏色 */
+  background-color: #D1EEEF; /* 背景色 */
+  border: none; /* 無邊框 */
+  border-radius: 5px; /* 圓角 */
+  cursor: pointer; /* 鼠標手型 */
+  transition: background-color 0.3s ease; /* 背景過渡效果 */
 }
-/* 優耳文字顏色 */
+
+/* 高亮文本樣式 */
 .blue-text {
-    color: #070cfa;
+  color: #070cfa; /* 藍色文字 */
 }
 .red-text {
-    color: crimson;
+  color: crimson; /* 紅色文字 */
 }
