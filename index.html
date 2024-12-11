@@ -91,6 +91,24 @@
         </tr>
     </table>
   </div>
+  <div class="container">  
+    <h1>批量貼上資料表</h1>
+    <textarea id="inputData" placeholder="料號\t名稱\t產品條碼\t數量 (每行一筆)"></textarea>
+    <button onclick="generateTable()">生成表格</button>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>料號</th>
+                <th>名稱</th>
+                <th>產品條碼</th>
+                <th>數量</th>
+                <th>QR Code</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+  </div>
   <script>
     const data = [
   {
@@ -8169,6 +8187,35 @@ function renderData(filteredData) {
             }
         }
     </script>
-
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script>
+        function generateTable() {
+            const inputData = document.getElementById('inputData').value.trim();
+            const rows = inputData.split('\n');
+            const tbody = document.querySelector('#dataTable tbody');
+            tbody.innerHTML = '';
+            
+            rows.forEach(row => {
+                const cols = row.split('\t');
+                if (cols.length >= 4) {
+                    const tr = document.createElement('tr');
+                    cols.forEach(col => {
+                        const td = document.createElement('td');
+                        td.textContent = col;
+                        tr.appendChild(td);
+                    });
+                    const qrTd = document.createElement('td');
+                    const canvas = document.createElement('canvas');
+                    qrTd.appendChild(canvas);
+                    tr.appendChild(qrTd);
+                    tbody.appendChild(tr);
+                    
+                    QRCode.toCanvas(canvas, cols[2], error => {
+                        if (error) console.error(error);
+                    });
+                }
+            });
+        }
+    </script>
 </body>
 </html>
