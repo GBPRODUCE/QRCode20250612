@@ -185,3 +185,13 @@ button {
 .red-text {
   color: crimson; /* 紅色文字 */
 }
+        textarea {
+            width: 90%;
+            height: 120px;
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
