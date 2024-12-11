@@ -92,9 +92,9 @@
     </table>
   </div>
   <div class="container">  
-    <h1>配件盤點工具</h1>
-    <textarea id="inputData" placeholder="貼上資料。料號\t名稱\t產品條碼\t數量 (每行一筆)"></textarea>
-    <button onclick="generateTable()">生成條碼</button>
+    <h1>批量上傳資料表</h1>
+    <input type="file" id="fileInput" accept=".xlsx, .xls" />
+    <button onclick="uploadFile()">上傳檔案</button>
 
     <table id="dataTable">
         <thead>
@@ -8187,34 +8187,48 @@ function renderData(filteredData) {
             }
         }
     </script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script>
-        function generateTable() {
-            const inputData = document.getElementById('inputData').value.trim();
-            const rows = inputData.split('\n');
-            const tbody = document.querySelector('#dataTable tbody');
-            tbody.innerHTML = '';
-            
-            rows.forEach(row => {
-                const cols = row.split('\t');
-                if (cols.length >= 4) {
-                    const tr = document.createElement('tr');
-                    cols.forEach(col => {
-                        const td = document.createElement('td');
-                        td.textContent = col;
-                        tr.appendChild(td);
-                    });
-                    const qrTd = document.createElement('td');
-                    const canvas = document.createElement('canvas');
-                    qrTd.appendChild(canvas);
-                    tr.appendChild(qrTd);
-                    tbody.appendChild(tr);
-                    
-                    QRCode.toCanvas(canvas, cols[2], error => {
-                        if (error) console.error(error);
-                    });
-                }
-            });
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('請選擇檔案');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const sheetName = workbook.SheetNames[0];
+                const sheet = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
+                
+                const tbody = document.querySelector('#dataTable tbody');
+                tbody.innerHTML = '';
+                
+                sheet.slice(1).forEach(row => {
+                    if (row.length >= 4) {
+                        const tr = document.createElement('tr');
+                        row.slice(0, 4).forEach(col => {
+                            const td = document.createElement('td');
+                            td.textContent = col || '';
+                            tr.appendChild(td);
+                        });
+                        const qrTd = document.createElement('td');
+                        const canvas = document.createElement('canvas');
+                        qrTd.appendChild(canvas);
+                        tr.appendChild(qrTd);
+                        tbody.appendChild(tr);
+                        
+                        QRCode.toCanvas(canvas, row[2], error => {
+                            if (error) console.error(error);
+                        });
+                    }
+                });
+            };
+            reader.readAsArrayBuffer(file);
         }
     </script>
 </body>
