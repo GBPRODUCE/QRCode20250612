@@ -8199,24 +8199,24 @@ function renderData(filteredData) {
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script>
-        function uploadFile() {
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
-            if (!file) {
-                alert('請選擇檔案');
-                return;
-            }
+    function uploadFile() {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+        if (!file) {
+            alert('請選擇檔案');
+            return;
+        }
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const data = new Uint8Array(e.target.result);
-                const workbook = XLSX.read(data, { type: 'array' });
-                const sheetName = workbook.SheetNames[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const tbody = document.querySelector('#dataTable tbody');
+            tbody.innerHTML = '';
+
+            workbook.SheetNames.forEach(sheetName => {
                 const sheet = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
-                
-                const tbody = document.querySelector('#dataTable tbody');
-                tbody.innerHTML = '';
-                
+
                 sheet.slice(1).forEach(row => {
                     if (row.length >= 4) {
                         const tr = document.createElement('tr');
@@ -8230,15 +8230,16 @@ function renderData(filteredData) {
                         qrTd.appendChild(canvas);
                         tr.appendChild(qrTd);
                         tbody.appendChild(tr);
-                        
+
                         QRCode.toCanvas(canvas, row[2], error => {
                             if (error) console.error(error);
                         });
                     }
                 });
-            };
-            reader.readAsArrayBuffer(file);
-        }
+            });
+        };
+        reader.readAsArrayBuffer(file);
+    }
     </script>
 </body>
 </html>
