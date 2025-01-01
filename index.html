@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <button id="backToTop" style="display:none;">↑ Top ↑</button>
   <div class="header">
     <h1><img src="GBP.LOGO.png" width="25" height="25">智能條碼</h1>
     <input type="text" id="search" placeholder="🔍搜尋" oninput="filterItems()">
@@ -8247,5 +8248,26 @@ function renderData(filteredData) {
         reader.readAsArrayBuffer(file);
     }
     </script>
+  <script>
+    // 獲取按鈕元素
+    const backToTopButton = document.getElementById('backToTop');
+
+    // 滾動事件：控制按鈕顯示/隱藏
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    // 按鈕點擊事件：回到頁面頂部
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // 平滑滾動效果
+        });
+    });
+</script>
 </body>
 </html>
