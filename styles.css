@@ -57,7 +57,7 @@ body {
   cursor: pointer; /* 鼠標變為手型 */
 }
 .main-category h2 {
-  background: #B5495B; /* 主分類背景色 */
+  background: #BF6766; /* 主分類背景色 */
   font-size: 1.3rem; /* 字體大小 */
 }
 .main-category h2:hover {
@@ -149,7 +149,7 @@ th, td {
   border-bottom: 1px solid #ddd; /* 單元格底部邊框 */
 }
 th {
-  background-color: #66BAB7; /* 表頭背景色 */
+  background-color: #DC9FB4; /* 表頭背景色 */
   color: #9E7A7A; /* 表頭文字顏色 */
   font-weight: bold; /* 加粗 */
 }
