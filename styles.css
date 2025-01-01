@@ -3,8 +3,8 @@ body {
   font-family: Arial, sans-serif; /* 設定全局字體 */
   margin: 0; /* 移除默認外邊距 */
   padding: 0; /* 移除默認內邊距 */
-  background-color: #F5F5DC; /* 柔和米色背景 */
-  color: #2F4F4F; /* 深綠色文字 */
+  background-color: #FFFFFF; /* 白色背景 */
+  color: #4B4B4B; /* 深灰文字 */
 }
 
 /* 頁首樣式 */
@@ -12,8 +12,8 @@ body {
   display: flex; /* 使用彈性布局 */
   justify-content: space-between; /* 兩邊對齊 */
   align-items: center; /* 垂直居中 */
-  background-color: #8FBC8F; /* 淡綠色背景 */
-  color: #2F4F4F; /* 深綠色文字 */
+  background-color: #FFB6C1; /* 淺粉背景 */
+  color: #FFFFFF; /* 白色文字 */
   padding: 10px 20px; /* 內邊距 */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加陰影 */
 }
@@ -25,14 +25,14 @@ body {
   width: 25%; /* 輸入框寬度 */
   padding: 10px; /* 內邊距 */
   font-size: 1rem; /* 字體大小 */
-  border: 1px solid #6B8E23; /* 橄欖綠邊框 */
+  border: 1px solid #FFC0CB; /* 淺粉邊框 */
   border-radius: 25px; /* 圓角 */
   outline: none; /* 去掉聚焦外邊框 */
   transition: all 0.3s ease; /* 動畫過渡 */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 陰影 */
 }
 .header input:focus {
-  border-color: #556B2F; /* 深橄欖綠邊框 */
+  border-color: #FF69B4; /* 粉紅邊框 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 聚焦時陰影 */
 }
 
@@ -43,10 +43,10 @@ body {
 
 /* 主分類和子分類樣式 */
 .main-category, .category {
-  border: 1px solid #ccc; /* 邊框顏色 */
+  border: 1px solid #FFDAB9; /* 淺橙邊框 */
   border-radius: 5px; /* 圓角 */
   margin-bottom: 10px; /* 下間距 */
-  background-color: #F0FFF0; /* 蜜露白背景 */
+  background-color: #FFF8DC; /* 淺黃色背景 */
 }
 .main-category h2, .category h3 {
   margin: 0; /* 移除外邊距 */
@@ -57,18 +57,18 @@ body {
   cursor: pointer; /* 鼠標變為手型 */
 }
 .main-category h2 {
-  background: #6B8E23; /* 橄欖綠背景 */
+  background: #FFD700; /* 金黃色背景 */
   font-size: 1.3rem; /* 字體大小 */
 }
 .main-category h2:hover {
-  background: #8FBC8F; /* 淡綠色背景 */
+  background: #FFFACD; /* 淡檸檬色背景 */
 }
 .category h3 {
-  background: #BDB76B; /* 卡其色背景 */
+  background: #FFC0CB; /* 淺粉背景 */
   font-size: 1.2rem; /* 字體大小 */
 }
 .category h3:hover {
-  background: #EEE8AA; /* 淡卡其色背景 */
+  background: #FFE4E1; /* 淺玫瑰色背景 */
 }
 
 /* 項目樣式 */
@@ -80,7 +80,7 @@ body {
   display: flex; /* 使用彈性布局 */
   align-items: center; /* 垂直居中 */
   padding: 10px 0; /* 垂直內邊距 */
-  border-bottom: 1px solid #eee; /* 底部邊框 */
+  border-bottom: 1px solid #EEE; /* 底部邊框 */
 }
 .item:last-child {
   border-bottom: none; /* 最後一項移除底部邊框 */
@@ -93,7 +93,7 @@ body {
 .qr-code img {
   width: 80px; /* 圖片寬度 */
   height: 80px; /* 圖片高度 */
-  border: 1px solid #6B8E23; /* 橄欖綠邊框 */
+  border: 1px solid #FFDAB9; /* 淺橙邊框 */
   border-radius: 5px; /* 圓角 */
 }
 .item-details {
@@ -109,7 +109,7 @@ body {
   width: 80%; /* 寬度 */
   padding: 5px 10px; /* 內邊距 */
   font-size: 1rem; /* 字體大小 */
-  border: 1px solid #6B8E23; /* 橄欖綠邊框 */
+  border: 1px solid #FFC0CB; /* 淺粉邊框 */
   border-radius: 25px; /* 圓角 */
   outline: none; /* 去掉聚焦外邊框 */
   transition: all 0.3s ease; /* 過渡效果 */
@@ -127,14 +127,14 @@ svg {
   width: 8px; /* 滾動條寬度 */
 }
 ::-webkit-scrollbar-track {
-  background: #E0E0E0; /* 滾動條軌道顏色 */
+  background: #FFE4B5; /* 淺橙背景 */
 }
 ::-webkit-scrollbar-thumb {
-  background: #6B8E23; /* 橄欖綠滑塊顏色 */
+  background: #FFD700; /* 金黃色滑塊 */
   border-radius: 10px; /* 滑塊圓角 */
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #556B2F; /* 深橄欖綠滑塊顏色 */
+  background: #FFA07A; /* 淺珊瑚滑塊 */
 }
 
 /* 表格樣式 */
@@ -149,8 +149,8 @@ th, td {
   border-bottom: 1px solid #ddd; /* 單元格底部邊框 */
 }
 th {
-  background-color: #8FBC8F; /* 淡綠色背景 */
-  color: #2F4F4F; /* 深綠色文字 */
+  background-color: #FFD700; /* 金黃色背景 */
+  color: #4B4B4B; /* 深灰文字 */
   font-weight: bold; /* 加粗 */
 }
 td input[type="text"] {
@@ -158,7 +158,7 @@ td input[type="text"] {
   width: 60%; /* 輸入框寬度 */
   padding: 5px 10px; /* 內邊距 */
   font-size: 1rem; /* 字體大小 */
-  border: 1px solid #6B8E23; /* 橄欖綠邊框 */
+  border: 1px solid #FFC0CB; /* 淺粉邊框 */
   border-radius: 25px; /* 圓角 */
   outline: none; /* 去掉聚焦外邊框 */
   transition: all 0.3s ease; /* 過渡效果 */
@@ -170,23 +170,23 @@ button {
   font-size: 18px; /* 字體大小 */
   padding: 10px 20px; /* 內邊距 */
   margin: 10px; /* 外邊距 */
-  color: #2F4F4F; /* 深綠色文字 */
-  background-color: #8FBC8F; /* 淡綠色背景 */
+  color: #FFFFFF; /* 白色文字 */
+  background-color: #FF69B4; /* 粉紅背景 */
   border: none; /* 無邊框 */
   border-radius: 5px; /* 圓角 */
   cursor: pointer; /* 鼠標手型 */
   transition: background-color 0.3s ease; /* 背景過渡效果 */
 }
 button:hover {
-  background-color: #556B2F; /* 深橄欖綠背景 */
+  background-color: #FF1493; /* 深粉背景 */
 }
 
 /* 高亮文本樣式 */
 .blue-text {
-  color: #4682B4; /* 鋼藍色 */
+  color: #4169E1; /* 皇室藍 */
 }
 .red-text {
-  color: #B22222; /* 火磚紅 */
+  color: #DC143C; /* 緋紅 */
 }
 textarea {
   width: 90%;
@@ -194,7 +194,7 @@ textarea {
   margin-bottom: 15px;
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #6B8E23; /* 橄欖綠邊框 */
+  border: 2px solid #FFC0CB; /* 淺粉邊框 */
   border-radius: 5px;
   resize: none;
 }
