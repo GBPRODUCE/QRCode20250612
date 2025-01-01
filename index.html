@@ -7969,117 +7969,119 @@
       "醫療保健品": ["iCue床墊","亞力田","偉翔生技","大來護具","洗牙機","測利得","滅菌機、空氣清淨機","益生菌、膠囊","血壓計","酷式","電影票","驅蚊貼"]
     };
 
-    const container = document.getElementById('main-container');
+// 取得主容器元素，供後續渲染用
+const container = document.getElementById('main-container');
 
-    function generateQRCode(barcode) {
-      return `https://api.qrserver.com/v1/create-qr-code/?data=${barcode}&size=100x100`;
-    }
+// 生成 QR Code 的 URL
+function generateQRCode(barcode) {
+  return `https://api.qrserver.com/v1/create-qr-code/?data=${barcode}&size=100x100`; // 動態生成 QR Code 的 API URL
+}
 
+// 切換大分類的展開與摺疊
+function toggleCategory(header) {
+  const categories = header.nextElementSibling; // 獲取對應的子分類元素
+  const icon = header.querySelector('span'); // 獲取箭頭圖示
+  if (categories.style.display === 'none' || categories.style.display === '') { // 若子分類為隱藏狀態
+    categories.style.display = 'block'; // 展開子分類
+    icon.innerHTML = '&#9650;'; // 改變圖示為向上箭頭
+  } else {
+    categories.style.display = 'none'; // 隱藏子分類
+    icon.innerHTML = '&#9660;'; // 改變圖示為向下箭頭
+  }
+}
 
+// 切換子分類的展開與摺疊
+function toggleItems(header) {
+  const items = header.nextElementSibling; // 獲取對應的項目元素
+  const icon = header.querySelector('span'); // 獲取箭頭圖示
+  if (items.style.display === 'none' || items.style.display === '') { // 若項目為隱藏狀態
+    items.style.display = 'block'; // 展開項目
+    icon.innerHTML = '&#9650;'; // 改變圖示為向上箭頭
+  } else {
+    items.style.display = 'none'; // 隱藏項目
+    icon.innerHTML = '&#9660;'; // 改變圖示為向下箭頭
+  }
+}
 
-    function toggleCategory(header) {
-      const categories = header.nextElementSibling;
-      const icon = header.querySelector('span');
-      if (categories.style.display === 'none' || categories.style.display === '') {
-        categories.style.display = 'block';
-        icon.innerHTML = '&#9650;';
-      } else {
-        categories.style.display = 'none';
-        icon.innerHTML = '&#9660;';
-      }
-    }
-
-    function toggleItems(header) {
-      const items = header.nextElementSibling;
-      const icon = header.querySelector('span');
-      if (items.style.display === 'none' || items.style.display === '') {
-        items.style.display = 'block';
-        icon.innerHTML = '&#9650;';
-      } else {
-        items.style.display = 'none';
-        icon.innerHTML = '&#9660;';
-      }
-    }
-
+// 渲染資料至畫面
 function renderData(filteredData) {
-  container.innerHTML = '';
+  container.innerHTML = ''; // 清空主容器的內容
   
-  // 遍歷大分類
+  // 遍歷每個大分類
   Object.keys(mainCategories).forEach(mainCategory => {
-    const mainDiv = document.createElement('div');
-    mainDiv.className = 'main-category';
+    const mainDiv = document.createElement('div'); // 建立大分類的外層容器
+    mainDiv.className = 'main-category'; // 設定 CSS 類名
     mainDiv.innerHTML = `
       <h2 onclick="toggleCategory(this)">${mainCategory} <span>&#9660;</span></h2>
       <div class="categories" style="display: none;"></div>
-    `;
-    const categoriesDiv = mainDiv.querySelector('.categories');
+    `; // 插入大分類的 HTML 結構
+    const categoriesDiv = mainDiv.querySelector('.categories'); // 取得子分類的容器
 
-    // 遍歷子分類
+    // 遍歷每個子分類
     mainCategories[mainCategory].forEach(subCategory => {
-      const subCategoryDiv = document.createElement('div');
-      subCategoryDiv.className = 'category';
+      const subCategoryDiv = document.createElement('div'); // 建立子分類的外層容器
+      subCategoryDiv.className = 'category'; // 設定 CSS 類名
       subCategoryDiv.innerHTML = `
         <h3 onclick="toggleItems(this)">${subCategory} <span>&#9660;</span></h3>
         <div class="items" style="display: none;"></div>
-      `;
-      const itemsDiv = subCategoryDiv.querySelector('.items');
+      `; // 插入子分類的 HTML 結構
+      const itemsDiv = subCategoryDiv.querySelector('.items'); // 取得項目的容器
 
-      // 過濾數據，僅顯示符合條件的子分類項目
+      // 過濾出符合條件的子分類資料
       const subCategoryData = filteredData.filter(item => item.category === subCategory);
-      
-      if (subCategoryData.length > 0) {
+
+      if (subCategoryData.length > 0) { // 若子分類有符合條件的資料
         subCategoryData.forEach(item => {
-          const itemDiv = document.createElement('div');
-          itemDiv.className = 'item';
+          const itemDiv = document.createElement('div'); // 建立項目的外層容器
+          itemDiv.className = 'item'; // 設定 CSS 類名
           itemDiv.innerHTML = `
             <div class="qr-code">
-              <img src="${generateQRCode(item.barcode)}" alt="QR Code">
+              <img src="${generateQRCode(item.barcode)}" alt="QR Code"> <!-- 顯示 QR Code -->
             </div>
             <div class="item-details">
-              <div><strong>品名規格：</strong>${item.name}</div>
-              <div><strong>料號：</strong>${item.partNumber}</div>
-              <div><strong>條碼編號：</strong>${item.barcode}</div>
+              <div><strong>品名規格：</strong>${item.name}</div> <!-- 顯示品名與規格 -->
+              <div><strong>料號：</strong>${item.partNumber}</div> <!-- 顯示料號 -->
+              <div><strong>條碼編號：</strong>${item.barcode}</div> <!-- 顯示條碼編號 -->
             </div>
-          `;
-          itemsDiv.appendChild(itemDiv);
+          `; // 插入項目的 HTML 結構
+          itemsDiv.appendChild(itemDiv); // 將項目加入子分類的項目容器
         });
 
-        // 只有在子分類中有符合條件的數據時，才添加到 DOM
-        categoriesDiv.appendChild(subCategoryDiv);
+        categoriesDiv.appendChild(subCategoryDiv); // 將子分類加入大分類的子分類容器
       }
     });
 
-    // 僅當大分類有符合條件的子分類時，才添加到 DOM
-    if (categoriesDiv.children.length > 0) {
-      container.appendChild(mainDiv);
+    if (categoriesDiv.children.length > 0) { // 若大分類中有符合條件的子分類
+      container.appendChild(mainDiv); // 將大分類加入主容器
     }
   });
 }
 
-    function filterItems() {
-      const searchTerm = document.getElementById('search').value.toLowerCase();
-      const filteredData = data.filter(item => 
-        item.category.toLowerCase().includes(searchTerm) ||
-        item.name.toLowerCase().includes(searchTerm) ||
-        item.partNumber.toLowerCase().includes(searchTerm) ||
-        String(item.barcode).toLowerCase().includes(searchTerm)
-      );
+// 過濾項目資料
+function filterItems() {
+  const searchTerm = document.getElementById('search').value.toLowerCase(); // 取得搜尋框輸入並轉為小寫
+  const filteredData = data.filter(item => 
+    item.category.toLowerCase().includes(searchTerm) || // 檢查子分類是否符合搜尋條件
+    item.name.toLowerCase().includes(searchTerm) || // 檢查品名是否符合搜尋條件
+    item.partNumber.toLowerCase().includes(searchTerm) || // 檢查料號是否符合搜尋條件
+    String(item.barcode).toLowerCase().includes(searchTerm) // 檢查條碼是否符合搜尋條件
+  );
 
-      renderData(filteredData);
+  renderData(filteredData); // 重新渲染過濾後的資料
 
-      // 如果搜尋欄清空，恢復到初始狀態
-      if (!searchTerm) {
-        document.querySelectorAll('.categories, .items').forEach(element => {
-          element.style.display = 'none';
-        });
-        document.querySelectorAll('.main-category h2 span, .category h3 span').forEach(icon => {
-          icon.innerHTML = '&#9660;';
-        });
-      }
-    }
+  if (!searchTerm) { // 若搜尋欄位為空
+    document.querySelectorAll('.categories, .items').forEach(element => {
+      element.style.display = 'none'; // 隱藏所有子分類和項目
+    });
+    document.querySelectorAll('.main-category h2 span, .category h3 span').forEach(icon => {
+      icon.innerHTML = '&#9660;'; // 重設箭頭圖示為向下
+    });
+  }
+}
 
-    // 初始渲染
-    renderData(data);
+// 初始化畫面，渲染初始資料
+renderData(data);
+
   </script>
 
     <!-- 載入 JsBarcode 庫 -->
