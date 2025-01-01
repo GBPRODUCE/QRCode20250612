@@ -198,3 +198,19 @@ textarea {
   border-radius: 5px;
   resize: none;
 }
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+#backToTop:hover {
+    background-color: #0056b3;
+}
