@@ -1830,6 +1830,18 @@
     "barcode": 21027226
   },
   {
+    "category": "Smart Demo",
+    "name": "S_ITE REACHIX-CICLISDEMO SR BLK BLK",
+    "partNumber": "DB110BLKU",
+    "barcode": 21035216
+  },
+  {
+    "category": "Smart Demo",
+    "name": "S_ITE REACHIX-CICLISDEMO SL BLK BLK",
+    "partNumber": "DB110BLKV",
+    "barcode": 21035217
+  },
+  {
     "category": "Stellar Li",
     "name": "Stellar Li 20 8C DGT",
     "partNumber": "DB1162003",
@@ -3456,6 +3468,12 @@
     "barcode": 21023082
   },
   {
+    "category": "Electronic電子配件",
+    "name": "64K變壓器",
+    "partNumber": "I1664KAM1R",
+    "barcode": "5566110072001"
+  },
+  {
     "category": "Fitting零配件",
     "name": "C型管3.1*2.0mm 40pcs",
     "partNumber": "ZN00000348",
@@ -3508,12 +3526,6 @@
     "name": "10150082 MiC Pair 30079 TARGA PRO 助聽器用雙麥克風",
     "partNumber": "N510150082",
     "barcode": "5566110071201"
-  },
-  {
-    "category": "Electronic電子配件",
-    "name": "64K變壓器",
-    "partNumber": "I1664KAM1R",
-    "barcode": "5566110072001"
   },
   {
     "category": "Fitting零配件",
@@ -5249,12 +5261,6 @@
     "partNumber": "P666XX00A1",
     "barcode": 10940057
   },
-{
-    "category": "耳勾Hook",
-    "name": "Coselgi耳勾",
-    "partNumber": "P610982569",
-    "barcode": 10982569
-  },
   {
     "category": "耳勾Hook",
     "name": "Mosaic 耳勾(20以上系列使用)",
@@ -5284,6 +5290,12 @@
     "name": "M-Core B-LI-HP兒童用耳勾",
     "partNumber": "P210993620",
     "barcode": 10993620
+  },
+  {
+    "category": "耳勾Hook",
+    "name": "Coselgi耳勾",
+    "partNumber": "P610982569",
+    "barcode": 10982569
   },
   {
     "category": "耳勾Hook",
@@ -5622,6 +5634,12 @@
     "barcode": "10673021"
   },
   {
+    "category": "連線裝置(Noahlink/Hi Pro/ProLink/調整線/調整靴)",
+    "name": "connext air",
+    "partNumber": "ZN00000200",
+    "barcode": 10944827
+  },
+  {
     "category": "防耳垢裝置",
     "name": "3.0防耳垢裝置",
     "partNumber": "O150000118",
@@ -5910,6 +5928,18 @@
     "barcode": "20240105001"
   },
   {
+    "category": "滅菌機、空氣清淨機",
+    "name": "除溼棒30吋",
+    "partNumber": "UA2319CAT",
+    "barcode": "4719878171564"
+  },
+  {
+    "category": "滅菌機、空氣清淨機",
+    "name": "LED檯燈",
+    "partNumber": "DP4M111C1",
+    "barcode": "4711914354153"
+  },
+  {
     "category": "益生菌、膠囊",
     "name": "多多益生菌(5入)/盒",
     "partNumber": "UA6024EA",
@@ -5969,7 +5999,7 @@
     "partNumber": "UA1212CCT",
     "barcode": "4711914358243"
   },
-    {
+  {
     "category": "OTC及不確定的分類",
     "name": "耳太郎-輔聽器-DP6SB20CB",
     "partNumber": "DP6SB20CB",
@@ -6029,7 +6059,7 @@
     "partNumber": "UP6S5ACAT",
     "barcode": 20231002001
   },
-    {
+  {
     "category": "維修部專用",
     "name": "6EF 左耳主體-BP6EF10M2C",
     "partNumber": "BP6EF10M2C",
@@ -7445,7 +7475,7 @@
     "partNumber": "DBW00HB009S",
     "barcode": 5714879045417
   },
-    {
+  {
     "category": "Rexton 8C",
     "name": "Rexton Emerald M 80 8C BG - DB100BG01",
     "partNumber": "DB100BG01",
@@ -7841,7 +7871,7 @@
     "partNumber": "DB2M08DG10",
     "barcode": 10967644
   }
-    ];
+];
 
     const mainCategories = {
       "助聽器主體": ["A&M","BiCore RIC","BiCore Rugged","BiCore SR","BiCore 藍芽訂製機","Coselgi Mojo BTE","Coselgi Mojo RIC","Cros","M-Core BTE","M-Core IX","M-Core RIC","M-Core SR","Mimitakara","Mimitakara-6EF/6EN/6SE/6SF","Mimitakara-MFi R1/R2/R3","Mimitakara-口袋機/脖掛機/骨導","Mimitakara-早安","Mimitakara-耳寶三兄弟","Reach IX","Rechagre B-LI-HP","Rechagre B-LI-P","Rechagre R-LI","Smart Demo","Stellar Li","Sterling 訂製機","特殊機型","Rexton 8C"],
