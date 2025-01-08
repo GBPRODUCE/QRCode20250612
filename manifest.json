@@ -12,7 +12,7 @@
             "type": "image/png" // 圖標的文件類型
         }
     ],
-    "start_url": "/barcode/index.html", // 應用的啟動 URL，通常是應用的主頁
+    "start_url": "/index.html", // 應用的啟動 URL，通常是應用的主頁
     "display": "standalone", // 顯示模式，設置為獨立窗口顯示
     "background_color": "#ffffff", // 應用啟動時的背景顏色
     "theme_color": "#000000" // 應用的主題顏色，影響工具欄或狀態欄的顏色
