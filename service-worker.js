@@ -6,6 +6,8 @@ self.addEventListener('install', (event) => {
                 '/barcode/index.html',
                 '/barcode/manifest.json',
                 '/barcode/GBP.LOGO.png',
+                '/barcode/category.js',
+                '/barcode/styless.css',
             ]);
         })
     );
