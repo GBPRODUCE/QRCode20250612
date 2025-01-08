@@ -5,7 +5,7 @@ const urlsToCache = [
     '/barcode/manifest.json',
     '/barcode/GBP.LOGO.png',
     '/barcode/category.js',
-    '/barcode/styless.css',
+    '/barcode/styles.css',
 ];
 
 self.addEventListener('install', event => {
