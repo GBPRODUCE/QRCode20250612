@@ -1,11 +1,11 @@
 self.addEventListener('install', (event) => {
     console.log('Service Worker 安裝中...');
     event.waitUntil(
-        caches.open('cache').then((cache) => {
+        caches.open('barcode-cache').then((cache) => {
             return cache.addAll([
-                '/index.html',
-                '/manifest.json',
-                '/GBP.LOGO.png',
+                '/barcode/index.html',
+                '/barcode/manifest.json',
+                '/barcode/GBP.LOGO.png',
             ]);
         })
     );
