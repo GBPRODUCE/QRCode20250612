@@ -318,16 +318,17 @@
     });
 </script>
 <script>
-  if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-    .register('/barcode/service-worker.js')
-    .then((registration) => {
-      console.log('Service Worker 註冊成功', registration);
-    })
-    .catch((error) => {
-      console.log('Service Worker 註冊失敗', error);
-    });
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+        .register('/barcode/service-worker.js')
+        .then((registration) => {
+            console.log('Service Worker 註冊成功', registration);
+        })
+        .catch((error) => {
+            console.log('Service Worker 註冊失敗', error);
+        });
 }
+
 
 </script>
 </body>
