@@ -1,0 +1,20 @@
+{
+    "short_name": "智能條碼", // 簡短的應用名稱，顯示在安裝的應用啟動器上
+    "name": "智能條碼", // 完整的應用名稱，可能會在啟動或其他地方顯示
+    "icons": [ // 定義應用的圖標集合
+        {
+            "src": "GBP.LOGO.png", // 圖標的路徑
+            "sizes": "250x250", // 圖標的尺寸
+            "type": "image/png" // 圖標的文件類型
+        },
+        {
+            "src": "GBP.LOGO.png", // 大尺寸圖標的路徑
+            "sizes": "512x512", // 大尺寸圖標的尺寸
+            "type": "image/png" // 圖標的文件類型
+        }
+    ],
+    "start_url": "/index.html", // 應用的啟動 URL，通常是應用的主頁
+    "display": "standalone", // 顯示模式，設置為獨立窗口顯示
+    "background_color": "#ffffff", // 應用啟動時的背景顏色
+    "theme_color": "#000000" // 應用的主題顏色，影響工具欄或狀態欄的顏色
+}
