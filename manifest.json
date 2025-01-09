@@ -7,12 +7,12 @@
     "theme_color": "#FFB6C1" // 應用的主題顏色，影響工具欄或狀態欄的顏色
     "icons": [ // 定義應用的圖標集合
         {
-            "src": "GBP.LOGO.png", // 圖標的路徑
+            "src": "GBP192.png", // 圖標的路徑
             "sizes": "192x192", // 圖標的尺寸
             "type": "image/png" // 圖標的文件類型
         },
         {
-            "src": "GBP.LOGO.png", // 大尺寸圖標的路徑
+            "src": "GBP512.png", // 大尺寸圖標的路徑
             "sizes": "512x512", // 大尺寸圖標的尺寸
             "type": "image/png" // 圖標的文件類型
         }
