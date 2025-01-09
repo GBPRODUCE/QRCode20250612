@@ -244,4 +244,5 @@ textarea {
       border-bottom: 2px solid #FF69B4;
       padding-bottom: 5px;
       color: #FF69B4;
+      text-align: center; /* 文本居中 */
     }
