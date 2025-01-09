@@ -239,6 +239,7 @@ textarea {
     /* 區塊樣式 */
     .section {
       margin-bottom: 40px;
+      padding: 20px; /* 內邊距 */
     }
     .section h2 {
       border-bottom: 2px solid #FF69B4;
