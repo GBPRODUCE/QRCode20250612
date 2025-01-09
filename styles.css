@@ -214,3 +214,34 @@ textarea {
 #backToTop:hover {
     background-color: #0056b3;
 }
+
+    /* 配件盤點樣式 */
+    .item-row {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+    .item-row img {
+      width: 100px;
+      height: 100px;
+      margin-right: 20px;
+    }
+    .item-details {
+      display: flex;
+      flex-direction: column;
+    }
+    .item-details p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
+    /* 區塊樣式 */
+    .section {
+      margin-bottom: 40px;
+    }
+    .section h2 {
+      border-bottom: 2px solid #FF69B4;
+      padding-bottom: 5px;
+      color: #FF69B4;
+    }
