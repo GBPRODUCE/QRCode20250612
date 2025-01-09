@@ -241,8 +241,7 @@ textarea {
 
 /* 區塊樣式 */
 .section {
-  margin-bottom: 40px; /* 設置區塊下方距離為 40px */
-  padding: 20px; /* 內邊距設置為 20px */
+  padding: 5px; /* 內邊距設置為 5px */
 }
 
 .section h2 {
