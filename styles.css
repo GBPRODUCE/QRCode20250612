@@ -215,35 +215,40 @@ textarea {
     background-color: #0056b3;
 }
 
-    /* 配件盤點樣式 */
-    .item-row {
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-      padding: 15px 0;
-    }
-    .item-row img {
-      width: 100px;
-      height: 100px;
-      margin-right: 20px;
-    }
-    .item-details {
-      display: flex;
-      flex-direction: column;
-    }
-    .item-details p {
-      margin: 5px 0;
-      font-size: 16px;
-    }
+/* 配件盤點樣式 */
+.item-row {
+  display: flex; /* 使用彈性盒子布局，使子項目可以靈活對齊 */
+  align-items: center; /* 垂直居中對齊子項目 */
+  border-bottom: 1px solid #ddd; /* 底部邊框設置為 1px 寬的灰色線條 */
+  padding: 15px 0; /* 上下內邊距 15px，左右內邊距 0 */
+}
 
-    /* 區塊樣式 */
-    .section {
-      margin-bottom: 40px;
-      padding: 20px; /* 內邊距 */
-    }
-    .section h2 {
-      border-bottom: 2px solid #FF69B4;
-      padding-bottom: 5px;
-      color: #FF69B4;
-      text-align: center; /* 文本居中 */
-    }
+.item-row img {
+  width: 100px; /* 設置圖片寬度為 100px */
+  height: 100px; /* 設置圖片高度為 100px */
+  margin-right: 20px; /* 設置圖片右邊距為 20px，避免與文字過於貼近 */
+}
+
+.item-details {
+  display: flex; /* 使用彈性盒子布局，方便排列內部元素 */
+  flex-direction: column; /* 垂直排列子項目 */
+}
+
+.item-details p {
+  margin: 5px 0; /* 每個段落元素上下間距 5px */
+  font-size: 16px; /* 設置文字大小為 16px */
+}
+
+/* 區塊樣式 */
+.section {
+  margin-bottom: 40px; /* 設置區塊下方距離為 40px */
+  padding: 20px; /* 內邊距設置為 20px */
+}
+
+.section h2 {
+  border-bottom: 2px solid #FF69B4; /* 設置標題下方有 2px 粉紅色邊框 */
+  padding-bottom: 5px; /* 標題下方有 5px 內邊距 */
+  color: #FF69B4; /* 設置標題文字顏色為粉紅色 */
+  text-align: center; /* 標題文字居中對齊 */
+}
+
