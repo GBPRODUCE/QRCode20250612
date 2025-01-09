@@ -105,29 +105,74 @@
         </tr>
     </table>
   </div>
-  <div class="container">  
-    <table id="dataTable">
-        <thead>
-            <tr>
-                <td colspan="5"><h1>配件盤點</h1></td>
-            </tr>
-            <tr>
-                <td colspan="3"><input type="file" id="fileInput" accept=".xlsx, .xls" /></td>
-                <td colspan="2"><button onclick="uploadFile()">生成條碼</button></td>
-
-            </tr>
-            <tr>
-                <th>料號</th>
-                <th>名稱</th>
-                <th>產品條碼</th>
-                <th>數量</th>
-                <th>QR Code</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+    <!-- 第四區塊：配件盤點 -->
+    <div class="section">
+      <h2>配件盤點</h2>
+      <input type="file" id="fileInput" accept=".xlsx, .xls">
+      <button onclick="uploadFile()">生成條碼</button>
+      <div id="inventoryContainer"></div>
+    </div>
   </div>
 
+  <!-- JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  <script>
+    function uploadFile() {
+      const fileInput = document.getElementById('fileInput');
+      const container = document.getElementById('inventoryContainer');
+      container.innerHTML = ''; // 清空容器
+      const file = fileInput.files[0];
+      if (!file) return alert("請選擇檔案！");
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: "array" });
+
+        workbook.SheetNames.forEach(sheetName => {
+          const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
+          rows.slice(1).forEach(row => {
+            const qrData = row[2] || ''; // 條碼編號
+            const details = {
+              partNumber: row[0] || '未知料號',
+              name: row[1] || '未知名稱',
+              barcode: row[2] || '未知條碼',
+              quantity: row[3] || '未知數量',
+            };
+
+            // 創建行
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'item-row';
+
+            // 創建QR Code圖片
+            const img = document.createElement('img');
+            QRCode.toDataURL(qrData, function(err, url) {
+              img.src = url || '';
+            });
+
+            // 創建文字詳情
+            const detailsDiv = document.createElement('div');
+            detailsDiv.className = 'item-details';
+            detailsDiv.innerHTML = `
+              <p><strong>料號：</strong>${details.partNumber}</p>
+              <p><strong>名稱：</strong>${details.name}</p>
+              <p><strong>產品條碼：</strong>${details.barcode}</p>
+              <p><strong>數量：</strong>${details.quantity}</p>
+            `;
+
+            // 將圖片和文字加入行
+            rowDiv.appendChild(img);
+            rowDiv.appendChild(detailsDiv);
+
+            // 加入到容器
+            container.appendChild(rowDiv);
+          });
+        });
+      };
+      reader.readAsArrayBuffer(file);
+    }
+  </script>
     <!-- 引用外部 JavaScript 文件 -->
     <script src="category.js"></script>
 
@@ -252,51 +297,7 @@
             }
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-    <script>
-    function uploadFile() {
-        const fileInput = document.getElementById('fileInput');
-        const file = fileInput.files[0];
-        if (!file) {
-            alert('請選擇檔案');
-            return;
-        }
 
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const data = new Uint8Array(e.target.result);
-            const workbook = XLSX.read(data, { type: 'array' });
-            const tbody = document.querySelector('#dataTable tbody');
-            tbody.innerHTML = '';
-
-            workbook.SheetNames.forEach(sheetName => {
-                const sheet = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
-
-                sheet.slice(1).forEach(row => {
-                    if (row.length >= 4) {
-                        const tr = document.createElement('tr');
-                        row.slice(0, 4).forEach(col => {
-                            const td = document.createElement('td');
-                            td.textContent = col || '';
-                            tr.appendChild(td);
-                        });
-                        const qrTd = document.createElement('td');
-                        const canvas = document.createElement('canvas');
-                        qrTd.appendChild(canvas);
-                        tr.appendChild(qrTd);
-                        tbody.appendChild(tr);
-
-                        QRCode.toCanvas(canvas, row[2], error => {
-                            if (error) console.error(error);
-                        });
-                    }
-                });
-            });
-        };
-        reader.readAsArrayBuffer(file);
-    }
-    </script>
   <script>
     // 獲取按鈕元素
     const backToTopButton = document.getElementById('backToTop');
