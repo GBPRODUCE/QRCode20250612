@@ -198,21 +198,24 @@ textarea {
   border-radius: 5px;
   resize: none;
 }
+
+/* 回頂端按鈕 */
 #backToTop {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000;
+  position: fixed; /* 設置按鈕位置固定，固定在視窗內，不會隨頁面滾動 */
+  bottom: 10px; /* 設置按鈕距離頁面底部 10px */
+  right: 5px; /* 設置按鈕距離頁面右邊 5px */
+  padding: 10px 10px; /* 設置按鈕的內邊距，上下 10px，左右 10px */
+  font-size: 14px; /* 設置按鈕文字大小為 16px */
+  background-color: #007bff; /* 設置按鈕的背景顏色為藍色（#007bff） */
+  color: white; /* 設置按鈕文字顏色為白色 */
+  border: none; /* 去除按鈕的邊框 */
+  border-radius: 10px; /* 設置按鈕的邊角為圓角，半徑 10px */
+  cursor: pointer; /* 鼠標懸停時顯示為手型，表示可以點擊 */
+  z-index: 1000; /* 設置按鈕的層級為 1000，保證它位於頁面其他元素之上 */
 }
+
 #backToTop:hover {
-    background-color: #0056b3;
+  background-color: #0056b3; /* 鼠標懸停時，改變背景顏色為較深的藍色（#0056b3） */
 }
 
 /* 配件盤點樣式 */
