@@ -202,7 +202,7 @@ textarea {
 /* 回頂端按鈕 */
 #backToTop {
   position: fixed; /* 設置按鈕位置固定，固定在視窗內，不會隨頁面滾動 */
-  bottom: 10px; /* 設置按鈕距離頁面底部 10px */
+  bottom: 30px; /* 設置按鈕距離頁面底部 10px */
   right: 5px; /* 設置按鈕距離頁面右邊 5px */
   padding: 10px 10px; /* 設置按鈕的內邊距，上下 10px，左右 10px */
   font-size: 14px; /* 設置按鈕文字大小為 16px */
