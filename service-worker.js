@@ -8,7 +8,7 @@ const urlsToCache = [
     '/barcode/styles.css',
 ];
 
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
                 return cache.addAll(urlsToCache);
@@ -16,14 +16,10 @@ self.addEventListener('install', event => {
     );
 });
 
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
     event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request);
-            })
+        caches.match(event.request).then(response => {
+            return response || fetch(event.request);
+        })
     );
 });
