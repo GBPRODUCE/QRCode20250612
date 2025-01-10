@@ -1,7 +1,7 @@
 {
     "name": "智能條碼", // 完整的應用名稱，可能會在啟動或其他地方顯示
     "short_name": "智能條碼", // 簡短的應用名稱，顯示在安裝的應用啟動器上
-    "start_url": "/", // 應用的啟動 URL，通常是應用的主頁
+    "start_url": "/barcode/index.html", // 應用的啟動 URL，通常是應用的主頁
     "display": "standalone", // 顯示模式，設置為獨立窗口顯示
     "background_color": "#ffffff", // 應用啟動時的背景顏色
     "theme_color": "#FFB6C1" // 應用的主題顏色，影響工具欄或狀態欄的顏色
