@@ -333,10 +333,10 @@
 <script>
 
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/barcode/service-worker.js').then(registration => {
+    window.addEventListener('load', function() => {
+        navigator.serviceWorker.register('/barcode/service-worker.js').then(function(registration) {
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, err => {
+        }, function(err) {
             console.log('ServiceWorker registration failed: ', err);
         });
     });
