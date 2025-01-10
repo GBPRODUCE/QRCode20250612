@@ -223,12 +223,6 @@
   },
   {
     "category": "BiCore Rugged",
-    "name": "原廠顏色判斷 RC1:BLK ； RC8:BG",
-    "partNumber": "",
-    "barcode": 0
-  },
-  {
-    "category": "BiCore Rugged",
     "name": "BiCore B-LI M RUGGED 40 BLK/BLK",
     "partNumber": "DB110BLKA",
     "barcode": 21023104
