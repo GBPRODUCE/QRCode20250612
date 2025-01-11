@@ -1,0 +1,20 @@
+{
+    "name": "智能條碼",
+    "short_name": "智能條碼",
+    "start_url": "/barcode/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#FFB6C1",
+    "icons": [
+        {
+            "src": "/barcode/GBP192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/barcode/GBP512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}   
