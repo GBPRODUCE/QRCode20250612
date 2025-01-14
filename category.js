@@ -625,6 +625,12 @@
   },
   {
     "category": "M-Core BTE",
+    "name": "M-Core B-LI-P 40 SLV",
+    "partNumber": "DB100SLV9",
+    "barcode": 10995540
+  },
+  {
+    "category": "M-Core BTE",
     "name": "M-Core B-LI-P 60 BG",
     "partNumber": "DB100BG19",
     "barcode": 10995549
@@ -637,9 +643,9 @@
   },
   {
     "category": "M-Core BTE",
-    "name": "M-Core B-LI-P 40 SLV",
-    "partNumber": "DB100SLV9",
-    "barcode": 10995540
+    "name": "REXTON M-Core B-LI-P 80 RGD",
+    "partNumber": "DB100RGDD",
+    "barcode": 10995571
   },
   {
     "category": "M-Core BTE",
