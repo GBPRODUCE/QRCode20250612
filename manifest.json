@@ -4,7 +4,7 @@
     "start_url": "/barcode/index.html",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#FFB6C1",
+    "theme_color": "#ffffff",
     "icons": [
         {
             "src": "/barcode/GBP192.png",
