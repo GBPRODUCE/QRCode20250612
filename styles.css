@@ -14,7 +14,7 @@ body {
   align-items: center; /* 垂直居中 */
   background-color: #FFB6C1; /* 淺粉背景 */
   color: #FFFFFF; /* 白色文字 */
-  padding: 10px 20px; /* 內邊距 */
+  padding: 5px 10px; /* 內邊距 */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加陰影 */
 }
 .header h1 {
@@ -23,10 +23,10 @@ body {
 }
 .header input {
   width: 25%; /* 輸入框寬度 */
-  padding: 10px; /* 內邊距 */
+  padding: 5px; /* 內邊距 */
   font-size: 1rem; /* 字體大小 */
   border: 1px solid #FFC0CB; /* 淺粉邊框 */
-  border-radius: 25px; /* 圓角 */
+  border-radius: 8px; /* 圓角 */
   outline: none; /* 去掉聚焦外邊框 */
   transition: all 0.3s ease; /* 動畫過渡 */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 陰影 */
@@ -38,19 +38,19 @@ body {
 
 /* 容器樣式 */
 .container {
-  padding: 20px; /* 內邊距 */
+  padding: 10px; /* 內邊距 */
 }
 
 /* 主分類和子分類樣式 */
 .main-category, .category {
   border: 1px solid #FFDAB9; /* 淺橙邊框 */
-  border-radius: 5px; /* 圓角 */
-  margin-bottom: 10px; /* 下間距 */
-  background-color: #FFF8DC; /* 淺黃色背景 */
+  border-radius: 8px; /* 圓角 */
+  margin-bottom: 5px; /* 下間距 */
+  background-color: #FFF; /* 淺黃色背景 */
 }
 .main-category h2, .category h3 {
   margin: 0; /* 移除外邊距 */
-  padding: 15px; /* 內邊距 */
+  padding: 8px; /* 內邊距 */
   display: flex; /* 使用彈性布局 */
   justify-content: space-between; /* 兩端對齊 */
   align-items: center; /* 垂直居中 */
@@ -74,7 +74,7 @@ body {
 /* 項目樣式 */
 .items {
   display: none; /* 預設隱藏 */
-  padding: 10px 15px; /* 內邊距 */
+  padding: 5px 10px; /* 內邊距 */
 }
 .item {
   display: flex; /* 使用彈性布局 */
@@ -88,19 +88,16 @@ body {
 .qr-code {
   flex-shrink: 0; /* 防止縮小 */
   width: 100px; /* 寬度 */
-  margin-right: 15px; /* 右外邊距 */
+  margin-right: 5px; /* 右外邊距 */
 }
 .qr-code img {
   width: 80px; /* 圖片寬度 */
   height: 80px; /* 圖片高度 */
   border: 1px solid #FFDAB9; /* 淺橙邊框 */
-  border-radius: 5px; /* 圓角 */
+  border-radius: 8px; /* 圓角 */
 }
 .item-details {
   flex-grow: 1; /* 擴展填滿空間 */
-}
-.item-details div {
-  margin-bottom: 5px; /* 下外邊距 */
 }
 
 /* 輸入框樣式 */
@@ -110,7 +107,7 @@ body {
   padding: 5px 10px; /* 內邊距 */
   font-size: 1rem; /* 字體大小 */
   border: 1px solid #FFC0CB; /* 淺粉邊框 */
-  border-radius: 25px; /* 圓角 */
+  border-radius: 8px; /* 圓角 */
   outline: none; /* 去掉聚焦外邊框 */
   transition: all 0.3s ease; /* 過渡效果 */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 陰影 */
@@ -131,7 +128,7 @@ svg {
 }
 ::-webkit-scrollbar-thumb {
   background: #FFD700; /* 金黃色滑塊 */
-  border-radius: 10px; /* 滑塊圓角 */
+  border-radius: 8px; /* 滑塊圓角 */
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #FFA07A; /* 淺珊瑚滑塊 */
@@ -144,7 +141,7 @@ table {
   margin: auto; /* 居中 */
 }
 th, td {
-  padding: 15px; /* 單元格內邊距 */
+  padding: 5px; /* 單元格內邊距 */
   text-align: center; /* 文本居中 */
   border-bottom: 1px solid #ddd; /* 單元格底部邊框 */
 }
@@ -159,7 +156,7 @@ td input[type="text"] {
   padding: 5px 10px; /* 內邊距 */
   font-size: 1rem; /* 字體大小 */
   border: 1px solid #FFC0CB; /* 淺粉邊框 */
-  border-radius: 25px; /* 圓角 */
+  border-radius: 8px; /* 圓角 */
   outline: none; /* 去掉聚焦外邊框 */
   transition: all 0.3s ease; /* 過渡效果 */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 陰影 */
@@ -167,13 +164,13 @@ td input[type="text"] {
 
 /* 按鈕樣式 */
 button {
-  font-size: 18px; /* 字體大小 */
-  padding: 10px 20px; /* 內邊距 */
-  margin: 10px; /* 外邊距 */
+  font-size: 14px; /* 字體大小 */
+  padding: 5px 10px; /* 內邊距 */
+  margin: 5px; /* 外邊距 */
   color: #FFFFFF; /* 白色文字 */
   background-color: #FF69B4; /* 粉紅背景 */
   border: none; /* 無邊框 */
-  border-radius: 5px; /* 圓角 */
+  border-radius: 8px; /* 圓角 */
   cursor: pointer; /* 鼠標手型 */
   transition: background-color 0.3s ease; /* 背景過渡效果 */
 }
@@ -202,14 +199,14 @@ textarea {
 /* 回頂端按鈕 */
 #backToTop {
   position: fixed; /* 設置按鈕位置固定，固定在視窗內，不會隨頁面滾動 */
-  bottom: 50px; /* 設置按鈕距離頁面底部 50px */
+  bottom: 60px; /* 設置按鈕距離頁面底部 50px */
   right: 5px; /* 設置按鈕距離頁面右邊 5px */
-  padding: 10px 10px; /* 設置按鈕的內邊距，上下 10px，左右 10px */
-  font-size: 14px; /* 設置按鈕文字大小為 16px */
+  padding: 5px 5px; /* 設置按鈕的內邊距，上下 5px，左右 5px */
+  font-size: 14px; /* 設置按鈕文字大小為 14px */
   background-color: #007bff; /* 設置按鈕的背景顏色為藍色（#007bff） */
   color: white; /* 設置按鈕文字顏色為白色 */
   border: none; /* 去除按鈕的邊框 */
-  border-radius: 10px; /* 設置按鈕的邊角為圓角，半徑 10px */
+  border-radius: 8px; /* 設置按鈕的邊角為圓角，半徑 8px */
   cursor: pointer; /* 鼠標懸停時顯示為手型，表示可以點擊 */
   z-index: 1000; /* 設置按鈕的層級為 1000，保證它位於頁面其他元素之上 */
 }
@@ -223,13 +220,13 @@ textarea {
   display: flex; /* 使用彈性盒子布局，使子項目可以靈活對齊 */
   align-items: center; /* 垂直居中對齊子項目 */
   border-bottom: 1px solid #ddd; /* 底部邊框設置為 1px 寬的灰色線條 */
-  padding: 15px 0; /* 上下內邊距 15px，左右內邊距 0 */
+  padding: 5px 0; /* 上下內邊距 15px，左右內邊距 0 */
 }
 
 .item-row img {
   width: 100px; /* 設置圖片寬度為 100px */
   height: 100px; /* 設置圖片高度為 100px */
-  margin-right: 20px; /* 設置圖片右邊距為 20px，避免與文字過於貼近 */
+  margin-right: 5px; /* 設置圖片右邊距為 20px，避免與文字過於貼近 */
 }
 
 .item-details {
@@ -239,7 +236,7 @@ textarea {
 
 .item-details p {
   margin: 5px 0; /* 每個段落元素上下間距 5px */
-  font-size: 16px; /* 設置文字大小為 16px */
+  font-size: 14px; /* 設置文字大小為 14px */
 }
 
 /* 區塊樣式 */
@@ -248,9 +245,8 @@ textarea {
 }
 
 .section h2 {
-  border-bottom: 2px solid #FF69B4; /* 設置標題下方有 2px 粉紅色邊框 */
+  border-bottom: 5px solid #FF69B4; /* 設置標題下方有 2px 粉紅色邊框 */
   padding-bottom: 5px; /* 標題下方有 5px 內邊距 */
   color: #FF69B4; /* 設置標題文字顏色為粉紅色 */
   text-align: center; /* 標題文字居中對齊 */
 }
-
