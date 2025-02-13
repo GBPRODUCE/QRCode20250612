@@ -93,8 +93,7 @@ body {
 .qr-code img {
   width: 80px; /* 圖片寬度 */
   height: 80px; /* 圖片高度 */
-  border: 1px solid #FFDAB9; /* 淺橙邊框 */
-  border-radius: 8px; /* 圓角 */
+  border-radius: 5px; /* 圓角 */
 }
 .item-details {
   flex-grow: 1; /* 擴展填滿空間 */
