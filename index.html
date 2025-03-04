@@ -207,105 +207,81 @@
         // 初始生成條碼
         updateBarcode();
 
-        function calculatePTA() {
-            // 獲取右耳和左耳的數值
-            var rightEarData = [
-                parseFloat(document.getElementById("rightEar_500Hz").value),
-                parseFloat(document.getElementById("rightEar_1000Hz").value),
-                parseFloat(document.getElementById("rightEar_2000Hz").value),
-                parseFloat(document.getElementById("rightEar_4000Hz").value)
-            ];
+function calculatePTA() {
+    // 獲取右耳和左耳的數值，並將其轉換為浮點數
+    var rightEarData = [
+        parseFloat(document.getElementById("rightEar_500Hz").value) || 0,
+        parseFloat(document.getElementById("rightEar_1000Hz").value) || 0,
+        parseFloat(document.getElementById("rightEar_2000Hz").value) || 0,
+        parseFloat(document.getElementById("rightEar_4000Hz").value) || 0
+    ];
 
-            var leftEarData = [
-                parseFloat(document.getElementById("leftEar_500Hz").value),
-                parseFloat(document.getElementById("leftEar_1000Hz").value),
-                parseFloat(document.getElementById("leftEar_2000Hz").value),
-                parseFloat(document.getElementById("leftEar_4000Hz").value)
-            ];
+    var leftEarData = [
+        parseFloat(document.getElementById("leftEar_500Hz").value) || 0,
+        parseFloat(document.getElementById("leftEar_1000Hz").value) || 0,
+        parseFloat(document.getElementById("leftEar_2000Hz").value) || 0,
+        parseFloat(document.getElementById("leftEar_4000Hz").value) || 0
+    ];
 
-            // 計算平均值
-            var rightEarPTA = calculateAverage(rightEarData);
-            var leftEarPTA = calculateAverage(leftEarData);
+    // 計算右耳和左耳的純音平均（PTA）
+    var rightEarPTA = calculateAverage(rightEarData);
+    var leftEarPTA = calculateAverage(leftEarData);
 
-            // 計算單耳聽障比率
-            var rightEarHearingLoss = 0;
-            var leftEarHearingLoss = 0;
+    // 計算單耳聽障比率（若小於 25dB，則為 0%）
+    var rightEarHearingLoss = (rightEarPTA < 25) ? 0 : ((rightEarPTA - 25) * 150) / 100;
+    var leftEarHearingLoss = (leftEarPTA < 25) ? 0 : ((leftEarPTA - 25) * 150) / 100;
 
-            if (rightEarPTA < 25) {
-                rightEarHearingLoss = 0;
-            } else {
-                rightEarHearingLoss = ((rightEarPTA - 25) * 150) / 100;
-            }
+    // 判斷哪一隻耳朵聽力較佳
+    var betterEar = "";
+    if (rightEarHearingLoss < leftEarHearingLoss) {
+        betterEar = "右耳";
+    } else if (leftEarHearingLoss < rightEarHearingLoss) {
+        betterEar = "左耳";
+    }
 
-            if (leftEarPTA < 25) {
-                leftEarHearingLoss = 0;
-            } else {
-                leftEarHearingLoss = ((leftEarPTA - 25) * 150) / 100;
-            }
+    // 計算雙耳聽障比率（優耳權重較高）
+    var bilateralHearingLoss = 0;
+    if (rightEarHearingLoss > leftEarHearingLoss && leftEarHearingLoss > 0) {
+        bilateralHearingLoss = ((rightEarHearingLoss * 1) + (leftEarHearingLoss * 5)) / 6;
+    } else if (leftEarHearingLoss > rightEarHearingLoss && rightEarHearingLoss > 0) {
+        bilateralHearingLoss = ((rightEarHearingLoss * 5) + (leftEarHearingLoss * 1)) / 6;
+    }
 
-            // 計算優耳
-            var betterEar = "";
+    // 更新 HTML 頁面上的結果顯示
+    document.getElementById("rightEar_PTA").innerHTML = rightEarPTA.toFixed(1);
+    document.getElementById("leftEar_PTA").innerHTML = leftEarPTA.toFixed(1);
+    document.getElementById("rightEar_HL").innerHTML = rightEarHearingLoss.toFixed(1) + "%";
+    document.getElementById("leftEar_HL").innerHTML = leftEarHearingLoss.toFixed(1) + "%";
+    document.getElementById("bilateral_HL").innerHTML = bilateralHearingLoss.toFixed(1) + "%";
 
-            if (rightEarHearingLoss < leftEarHearingLoss) {
-                betterEar = "右耳";
-            } else if (leftEarHearingLoss < rightEarHearingLoss) {
-                betterEar = "左耳";
-            } else {
-                betterEar = "";
-            }
+    // 根據較佳耳朵套用不同的 CSS 樣式
+    var betterEarElement = document.getElementById("betterEar");
+    if (betterEar === "左耳") {
+        betterEarElement.className = "blue-text";
+    } else if (betterEar === "右耳") {
+        betterEarElement.className = "red-text";
+    } else {
+        betterEarElement.className = ""; // 若無優耳則清除樣式
+    }
 
-            // 計算雙耳聽障比率
-            var bilateralHearingLoss = 0;
-            if (rightEarHearingLoss > leftEarHearingLoss && leftEarHearingLoss > 0) {
-                bilateralHearingLoss = ((rightEarHearingLoss * 1) + (leftEarHearingLoss * 5)) / 6;
-            } else if (leftEarHearingLoss > rightEarHearingLoss && rightEarHearingLoss > 0) {
-                bilateralHearingLoss = ((rightEarHearingLoss * 5) + (leftEarHearingLoss * 1)) / 6;
-            }
+    // 設定優耳顯示內容
+    betterEarElement.innerHTML = betterEar;
+}
 
-            // 顯示結果
-            document.getElementById("rightEar_PTA").innerHTML = rightEarPTA.toFixed(1);
-            document.getElementById("leftEar_PTA").innerHTML = leftEarPTA.toFixed(1);
-            document.getElementById("rightEar_HL").innerHTML = rightEarHearingLoss.toFixed(1) + "%";
-            document.getElementById("leftEar_HL").innerHTML = leftEarHearingLoss.toFixed(1) + "%";
-            document.getElementById("bilateral_HL").innerHTML =  bilateralHearingLoss.toFixed(1) + "%";
+// 計算陣列的平均值，確保固定除以 4
+function calculateAverage(data) {
+    var sum = data.reduce((acc, val) => acc + val, 0);
+    return sum / 4; // 固定除以 4，確保正確計算 PTA
+}
 
-            // 根據優耳值應用不同的CSS樣式
-            if (betterEar === "左耳") {
-                document.getElementById("betterEar").className = "blue-text";
-            } else if (betterEar === "右耳") {
-                document.getElementById("betterEar").className = "red-text";
-            } else {
-                // 如果優耳為空，清除所有樣式
-                document.getElementById("betterEar").className = "";
-            }
+// 清空所有輸入框的值
+function clearInput() {
+    var inputElements = document.getElementsByTagName("input");
+    for (var i = 0; i < inputElements.length; i++) {
+        inputElements[i].value = "";
+    }
+}
 
-            // 設置優耳內容
-            document.getElementById("betterEar").innerHTML = betterEar;
-        }
-
-        function calculateAverage(data) {
-            var sum = 0;
-            var count = 0;
-            for (var i = 0; i < data.length; i++) {
-                if (!isNaN(data[i])) {
-                    sum += data[i];
-                    count++;
-                }
-            }
-            if (count > 0) {
-                return sum / count;
-            } else {
-                return 0;
-            }
-        }
-
-        // JavaScript函数，用于清空输入框的值
-        function clearInput() {
-            var inputElements = document.getElementsByTagName("input");
-            for (var i = 0; i < inputElements.length; i++) {
-                inputElements[i].value = "";
-            }
-        }
     </script>
 
   <script>
