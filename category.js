@@ -1,5 +1,5 @@
 // Google Apps Script Web App URL
-const apiUrl = "https://script.google.com/macros/s/AKfycby2NBw3p9N1biJ_vb2TS66htp8oAnh_poS4ncGGncV5pT3bHj7_HiIjtzzafL7itI0_/exec"; // 替換為你的 Web App URL
+const apiUrl = "https://script.google.com/macros/s/AKfycbyJ7oI0shpdhmoUwJFcAAlkBkShMc-GJ3e4LJFCmcGEMph1PrBQMmVHCaCSo1p2aPaZZg/exec"; // 替換為你的 Web App URL
 
     const mainCategories = {
       "助聽器機型": ["A&M","BiCore RIC","BiCore Rugged","BiCore SR","BiCore 藍芽訂製機","Coselgi Mojo BTE","Coselgi Mojo RIC","Cros","M-Core BTE","M-Core IX","M-Core RIC","M-Core SR","Mimitakara","Mimitakara-6EF/6EN/6SE/6SF","Mimitakara-MFi R1/R2/R3","Mimitakara-口袋機/脖掛機/骨導","Mimitakara-早安","Mimitakara-耳寶三兄弟","Reach IX","Rechagre B-LI-HP","Rechagre B-LI-P","Rechagre R-LI","Smart Demo","Stellar Li","Sterling 訂製機","特殊機型","Rexton 8C","Rexton未知新款"],
