@@ -9,7 +9,8 @@ const apiUrl = "https://script.google.com/macros/s/AKfycbyJ7oI0shpdhmoUwJFcAAlkB
       "電子喇吧線": ["Coselgi Wired RIC","MiniReceiver 電子喇吧線 6EF","MiniReceiver 電子喇吧線2.0","MiniReceiver 電子喇吧線2.0 HP","MiniReceiver 電子喇吧線3.0 BiCore"],
       "助聽器外殼": ["外殼 Bi-Core RIC","外殼 Coselgi(含拆卸工具)","外殼 Emerald","外殼 M-Core BTE","外殼 M-Core RIC","外殼 Mosaic"],
       "西門子細管": ["Thin Tube 細管 1.0","Thin Tube 細管 2.0","Thin Tube 細管 3.0"],
-      "醫療保健品": ["iCue床墊","亞力田","偉翔生技","大來護具","洗牙機","測利得","滅菌機、空氣清淨機","益生菌、膠囊","血壓計","酷式","電影票","驅蚊貼"]
+      "醫療保健品": ["iCue床墊","亞力田","偉翔生技","大來護具","洗牙機","測利得","滅菌機、空氣清淨機","益生菌、膠囊","血壓計","酷式","電影票","驅蚊貼"],
+      "優惠券": ["優惠券"]
     };
 
 // 取得主容器元素
