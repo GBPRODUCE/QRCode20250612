@@ -2,15 +2,15 @@
 const apiUrl = "https://script.google.com/macros/s/AKfycbyJ7oI0shpdhmoUwJFcAAlkBkShMc-GJ3e4LJFCmcGEMph1PrBQMmVHCaCSo1p2aPaZZg/exec"; // 替換為你的 Web App URL
  
     const mainCategories = {
-      "Rexton機型": ["BiCore RIC","BiCore Rugged","BiCore SR","BiCore 藍芽訂製機","Cros","M-Core BTE","M-Core IX","M-Core RIC","M-Core SR","Reach IX","Reach RIC","Rechagre B-LI-HP","Rechagre B-LI-P","Rechagre R-LI","Stellar Li","Sterling 訂製機","特殊機型","Rexton 8C","Rexton未知新款"],
-      "Mimitakara機型": ["A&M","Mimitakara","Mimitakara-6EF/6EN/6SE/6SF","Mimitakara-MFi R1/R2/R3","Mimitakara-口袋機/脖掛機/骨導","Mimitakara-早安","Mimitakara-耳寶三兄弟"],
-      "Coselgi機型": ["Coselgi Mojo BTE","Coselgi Mojo RIC","Coselgi BTE 充電款","Coselgi RIC 充電款"],
+      "Rexton系列": ["BiCore RIC","BiCore Rugged","BiCore SR","BiCore 藍芽訂製機","Cros","M-Core BTE","M-Core IX","M-Core RIC","M-Core SR","Reach IX","Reach RIC","Rechagre B-LI-HP","Rechagre B-LI-P","Rechagre R-LI","Stellar Li","Sterling 訂製機","特殊機型","Rexton 8C","Rexton未知新款"],
+      "Mimitakara系列": ["A&M","Mimitakara","Mimitakara-6EF/6EN/6SE/6SF","Mimitakara-MFi R1/R2/R3","Mimitakara-口袋機/脖掛機/骨導","Mimitakara-早安","Mimitakara-耳寶三兄弟"],
+      "Coselgi系列": ["Coselgi Mojo BTE","Coselgi Mojo RIC","Coselgi BTE 充電款","Coselgi RIC 充電款"],
       "Smart Demo": ["Smart Demo"],
       "助聽器配件": ["A快速分類(DM、提袋、防掉環、電子除濕盒、乾燥罐、磁吸棒、氣導管)","Battery鋅空電池","Charging Station助聽器充電盒","Concha lock固定線","Coselgi V.2 耳管(就是細管)","Coselgi 轉接頭(接細管用的)","Coselgi 電子配件","Electronic電子配件","Fitting零配件","SD 270","手雕機配件","日本耳寶耳內型聲音放大器","服務","特定客戶使用","耳勾Hook","設備-耳窺鏡","連線裝置(Noahlink/Hi Pro/ProLink/調整線/調整靴)","防耳垢裝置","除濕保養乾燥機(含配件)","OTC及不確定的分類","維修部專用"],
       "耳塞及耳模": ["Click 耳塞2.0 Connexx","Click 耳塞2.0 Mimitakara","Ear Plugs耳塞(香菇/各種耳寶/矽膠/海綿)","Eartips & Sleeve 耳塞 3.0","Coselgi 耳塞","耳模及其材料","Tip 耳塞","耳塞包 6S47+6EF"],
       "配件組合包": ["組合-6EF (充電盒+主機+專用喇吧線)","組合-6EN (充電盒+主機)","組合-6SE (充電盒+主機)","組合-6SF (充電盒+主機)","組合-ReCharge(豆腐頭、充電器、底座)"],
       "電子喇吧線": ["Coselgi Wired RIC","Coselgi 充電款喇叭線","MiniReceiver 電子喇吧線 6EF","MiniReceiver 電子喇吧線2.0","MiniReceiver 電子喇吧線2.0 HP","MiniReceiver 電子喇吧線3.0 BiCore"],
-      "助聽器外殼": ["外殼 Bi-Core RIC","外殼 Coselgi(含拆卸工具)","外殼 Emerald","外殼 M-Core BTE","外殼 M-Core RIC","外殼 Mosaic"],
+      "助聽器外殼": ["外殼 Bi-Core RIC","外殼 Coselgi(含拆卸工具)","外殼 M-Core BTE","外殼 M-Core RIC","外殼 Emerald","外殼 Mosaic"],
       "西門子細管": ["Thin Tube 細管 1.0","Thin Tube 細管 2.0","Thin Tube 細管 3.0"],
       "醫療保健品": ["iCue床墊","亞力田","偉翔生技","大來護具","氧氣機","洗牙機","測利得","滅菌機、空氣清淨機","益生菌、膠囊","血壓計、檯燈","酷式","電影票","驅蚊貼"],
       "系統及優惠": ["系統","優惠券"]
