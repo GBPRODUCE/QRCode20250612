@@ -1,11 +1,11 @@
 const CACHE_NAME = 'barcode-cache';
 const urlsToCache = [
-    '/barcode/',
-    '/barcode/index.html',
-    '/barcode/manifest.json',
-    '/barcode/GBP.LOGO.png',
-    '/barcode/category.js',
-    '/barcode/styles.css',
+    '/QRCode20250612/',
+    '/QRCode20250612/index.html',
+    '/QRCode20250612/manifest.json',
+    '/QRCode20250612/GBP.LOGO.png',
+    '/QRCode20250612/category.js',
+    '/QRCode20250612/styles.css',
 ];
 
 // 安裝 Service Worker 並快取資源
